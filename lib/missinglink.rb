@@ -98,8 +98,10 @@ module Missinglink
 
   private
   def typh_request(fragment, api_key, token, body = '{ }')
-    sleep 0.5 # survey monkey's API limits are obnoxious, this is hacky but an easy way to ensure that we're always under
-             # the 2 QPS limit
+    # survey monkey's API limits are obnoxious, this is hacky but an easy way
+    # to ensure that we're always under the 2 QPS limit
+    sleep 0.5 unless ENV["RAILS_ENV"] == 'test'
+
     Typhoeus::Request.new(
       "https://api.surveymonkey.net/v2/surveys/#{fragment}",
       method: :post,

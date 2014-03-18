@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'typhoeus'
 
-describe "VCR Tests" do
+describe "VCR Tests", vcr_init: true do
   before do
     VCR.insert_cassette 'missinglink', record: :new_episodes
   end
