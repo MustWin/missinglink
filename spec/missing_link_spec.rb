@@ -16,6 +16,10 @@ describe Missinglink do
   context "#poll_surveys" do
     let(:survey) { Missinglink::Survey.new }
 
+    it "should return nil if no credentials are provided" do
+      Missinglink.poll_surveys.should be_nil
+    end
+
     it "should attempt to update the attributes for the first or new survey by id" do
       survey.should_receive(:update_attributes).exactly(3).times
       Missinglink::Survey.should_receive(:first_or_create_by_sm_survey_id).exactly(3).times.and_return(survey)
@@ -27,6 +31,10 @@ describe Missinglink do
   context "#fetch_survey" do
     let(:survey) { Missinglink::Survey.new(sm_survey_id: 50144489) }
 
+    it "should return nil if no credentials are provided" do
+      Missinglink.fetch_survey(survey).should be_nil
+    end
+
     it "should attempt to update the attributes of the survey with a lot of things" do
       survey.should_receive(:update_attributes)
       Missinglink.fetch_survey(survey, ML_TEST_CREDS)
@@ -36,6 +44,10 @@ describe Missinglink do
   context "#fetch_respondents" do
     let(:survey) { Missinglink::Survey.create(sm_survey_id: 50144354) }
     let(:survey_respondent_detail) { Missinglink::SurveyRespondentDetail.new(survey: survey, sm_respondent_id: 3131160696) }
+
+    it "should return nil if no credentials are provided" do
+      Missinglink.fetch_respondents(survey).should be_nil
+    end
 
     it "should attempt to update the attributes for the first or new survey respondent by survey and id" do
       survey_respondent_detail.should_receive(:update_attributes)
@@ -47,6 +59,10 @@ describe Missinglink do
   context "#fetch_responses" do
     let(:survey) { Missinglink::Survey.create(sm_survey_id: 50144354) }
 
+    it "should return nil if no credentials are provided" do
+      Missinglink.fetch_responses(survey).should be_nil
+    end
+
     it "should only send the respondent ids that are complete and have no surveys" do
       complete_srd = Missinglink::SurveyRespondentDetail.new(survey_id: survey.id, status: 'completed')
       pulled_srd = Missinglink::SurveyRespondentDetail.new(survey_id: survey.id, status: 'completed')
@@ -56,6 +72,15 @@ describe Missinglink do
       Missinglink.should_receive(:fetch_response_answers).with(survey, [complete_srd], ML_TEST_CREDS)
 
       Missinglink.fetch_responses(survey, ML_TEST_CREDS)
+    end
+  end
+
+  context "#fetch_response_answers" do
+    let(:survey) { Missinglink::Survey.create(sm_survey_id: 50144354) }
+    let(:survey_respondent_detail) { Missinglink::SurveyRespondentDetail.new(survey: survey, sm_respondent_id: 3131160696) }
+
+    it "should return nil if no credentials are provided" do
+      Missinglink.fetch_response_answers(survey, survey_respondent_detail).should be_nil
     end
   end
 end

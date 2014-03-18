@@ -18,7 +18,7 @@ module Missinglink
     end
   end
 
-  def fetch_survey(survey, credential_hash)
+  def fetch_survey(survey, credential_hash = { api_key: nil, token: nil })
     unless (api_key = credential_hash[:api_key]) && (token = credential_hash[:token])
       puts "Please provide a hash with api_key and token to fetch surveys."
       return
@@ -55,7 +55,7 @@ module Missinglink
     fetch_responses(survey.reload, credential_hash)
   end
 
-  def fetch_responses(survey, credential_hash)
+  def fetch_responses(survey, credential_hash = { api_key: nil, token: nil })
     unless (api_key = credential_hash[:api_key]) && (token = credential_hash[:token])
       puts "Please provide a hash with api_key and token to fetch survey responses."
       return
@@ -73,7 +73,7 @@ module Missinglink
     fetch_response_answers(survey, respondents_to_pull, credential_hash)
   end
 
-  def fetch_response_answers(survey, respondents, credential_hash)
+  def fetch_response_answers(survey, respondents, credential_hash = { api_key: nil, token: nil })
     unless (api_key = credential_hash[:api_key]) && (token = credential_hash[:token])
       puts "Please provide a hash with api_key and token to fetch survey response answers."
       return
