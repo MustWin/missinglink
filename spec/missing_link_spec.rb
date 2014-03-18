@@ -6,7 +6,7 @@ describe Missinglink do
   ML_TEST_TOKEN = "UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI="
   ML_TEST_CREDS = { api_key: ML_TEST_API_KEY, token: ML_TEST_TOKEN }
   before do
-    VCR.insert_cassette 'missinglink', record: :new_episodes
+    VCR.insert_cassette 'missinglink', record: :new_episodes, match_requests_on: [:method, :uri, :host, :path, :query, :body_as_json, :headers]
   end
 
   after do
@@ -17,9 +17,9 @@ describe Missinglink do
     let(:survey) { Missinglink::Survey.new }
 
     it "should attempt to update the attributes for the first or new survey by id" do
-      survey.should_receive(:update_attributes)
-      Missinglink::Survey.should_receive(:first_or_create_by_sm_survey_id).exactly(1).times.and_return(survey)
-      Missinglink.should_receive(:fetch_survey).with(survey, ML_TEST_CREDS)
+      survey.should_receive(:update_attributes).exactly(3).times
+      Missinglink::Survey.should_receive(:first_or_create_by_sm_survey_id).exactly(3).times.and_return(survey)
+      Missinglink.should_receive(:fetch_survey).exactly(3).times.with(survey, ML_TEST_CREDS)
       Missinglink.poll_surveys(ML_TEST_CREDS)
     end
   end
@@ -34,18 +34,18 @@ describe Missinglink do
   end
 
   context "#fetch_respondents" do
-    let(:survey) { Missinglink::Survey.create(sm_survey_id: 50144489) }
-    let(:survey_respondent_detail) { Missinglink::SurveyRespondentDetail.new(survey: survey, sm_respondent_id: 3131170764) }
+    let(:survey) { Missinglink::Survey.create(sm_survey_id: 50144354) }
+    let(:survey_respondent_detail) { Missinglink::SurveyRespondentDetail.new(survey: survey, sm_respondent_id: 3131160696) }
 
     it "should attempt to update the attributes for the first or new survey respondent by survey and id" do
       survey_respondent_detail.should_receive(:update_attributes)
-      Missinglink::SurveyRespondentDetail.should_receive(:first_or_create_by_survey_details).with(survey.id, "3131170764").and_return(survey_respondent_detail)
+      Missinglink::SurveyRespondentDetail.should_receive(:first_or_create_by_survey_details).with(survey.id, "3131160696").and_return(survey_respondent_detail)
       Missinglink.fetch_respondents(survey, ML_TEST_CREDS)
     end
   end
 
   context "#fetch_responses" do
-    let(:survey) { Missinglink::Survey.create(sm_survey_id: 50144489) }
+    let(:survey) { Missinglink::Survey.create(sm_survey_id: 50144354) }
 
     it "should only send the respondent ids that are complete and have no surveys" do
       complete_srd = Missinglink::SurveyRespondentDetail.new(survey_id: survey.id, status: 'completed')
