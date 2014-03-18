@@ -1,0 +1,841 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.surveymonkey.net/v2/surveys/get_survey_list?api_key=9fakeapikeynumberinhereq
+    body:
+      encoding: UTF-8
+      string: "{ }"
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Authorization:
+      - bearer UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma,Date,Content-Length
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 18 Mar 2014 22:31:30 GMT
+      Server:
+      - nginx
+      Sm-Request-Id:
+      - 47bdec92-c195-4515-bcb0-ba9bc6e1bf56
+      X-Mashery-Message-Id:
+      - a99fc336-bec9-4977-9eb2-947b0a0ed242
+      X-Mashery-Responder:
+      - prod-j-worker-us-west-1b-19.mashery.com
+      Content-Length:
+      - '147'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"status\": 0, \"data\": {\"surveys\": [{\"survey_id\": \"50144489\"},
+        {\"survey_id\": \"50144354\"}, {\"survey_id\": \"50143846\"}], \"page\": 1,
+        \"page_size\": 1000}}"
+    http_version: 
+  recorded_at: Tue, 18 Mar 2014 22:31:31 GMT
+- request:
+    method: post
+    uri: https://api.surveymonkey.net/v2/surveys/get_survey_details?api_key=9fakeapikeynumberinhereq
+    body:
+      encoding: UTF-8
+      string: "{\"survey_id\":\"50144489\"}"
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Authorization:
+      - bearer UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma,Date,Content-Length
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 18 Mar 2014 22:33:30 GMT
+      Server:
+      - nginx
+      Sm-Request-Id:
+      - 1c23feb9-b70d-45f8-a9d6-6a68913d3f77
+      X-Mashery-Message-Id:
+      - 863ba947-9dcc-4df9-b1a5-a90a1501fd08
+      X-Mashery-Responder:
+      - prod-j-worker-us-west-1c-13.mashery.com
+      Content-Length:
+      - '7168'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"status\": 0, \"data\": {\"custom_variables\": [], \"title\": {\"text\":
+        \"Test Survey 3\", \"enabled\": true}, \"language_id\": 1, \"custom_variable_count\":
+        0, \"nickname\": \"\", \"pages\": [{\"sub_heading\": null, \"questions\":
+        [{\"answers\": [{\"text\": \"Image 1\", \"visible\": false, \"position\":
+        0, \"type\": \"label\", \"answer_id\": \"7303915438\"}, {\"visible\": true,
+        \"position\": 0, \"type\": \"img\", \"answer_id\": \"7303915439\"}], \"type\":
+        {\"subtype\": \"image\", \"family\": \"presentation\"}, \"position\": 1, \"heading\":
+        \"Presentation, Image\", \"question_id\": \"630845763\"}, {\"answers\": [{\"text\":
+        \"Descriptive Text 1\", \"visible\": false, \"position\": 0, \"type\": \"label\",
+        \"answer_id\": \"7303916577\"}], \"type\": {\"subtype\": \"descriptive_text\",
+        \"family\": \"presentation\"}, \"position\": 2, \"heading\": \"Presentation,
+        Descriptive Text\", \"question_id\": \"630845868\"}], \"page_id\": \"161399988\",
+        \"heading\": \"\"}, {\"sub_heading\": \"\", \"questions\": [{\"type\": {\"subtype\":
+        \"single\", \"family\": \"matrix\"}, \"answers\": [{\"text\": \"Row 1\", \"visible\":
+        true, \"position\": 1, \"type\": \"row\", \"answer_id\": \"7303936930\"},
+        {\"text\": \"Row 2\", \"visible\": true, \"position\": 2, \"type\": \"row\",
+        \"answer_id\": \"7303936931\"}, {\"text\": \"Row 3\", \"visible\": true, \"position\":
+        3, \"type\": \"row\", \"answer_id\": \"7303936932\"}, {\"text\": \"Row 4\",
+        \"visible\": true, \"position\": 4, \"type\": \"row\", \"answer_id\": \"7303936935\"},
+        {\"text\": \"Other (please specify)\", \"visible\": true, \"apply_all_rows\":
+        false, \"type\": \"other\", \"answer_id\": \"7303936928\"}, {\"text\": \"Column
+        1\", \"visible\": true, \"position\": 1, \"type\": \"col\", \"answer_id\":
+        \"7303936936\"}, {\"text\": \"Column 2\", \"visible\": true, \"position\":
+        2, \"type\": \"col\", \"answer_id\": \"7303936937\"}, {\"text\": \"Column
+        3\", \"visible\": true, \"position\": 3, \"type\": \"col\", \"answer_id\":
+        \"7303936939\"}, {\"text\": \"Column 4\", \"visible\": true, \"position\":
+        4, \"type\": \"col\", \"answer_id\": \"7303936940\"}], \"position\": 1, \"heading\":
+        \"Matrix, Single\", \"question_id\": \"630847884\"}, {\"type\": {\"subtype\":
+        \"multi\", \"family\": \"matrix\"}, \"answers\": [{\"text\": \"Row 1\", \"visible\":
+        true, \"position\": 1, \"type\": \"row\", \"answer_id\": \"7303938762\"},
+        {\"text\": \"Row 2\", \"visible\": true, \"position\": 2, \"type\": \"row\",
+        \"answer_id\": \"7303938763\"}, {\"text\": \"Row 3\", \"visible\": true, \"position\":
+        3, \"type\": \"row\", \"answer_id\": \"7303938764\"}, {\"text\": \"Other (please
+        specify)\", \"visible\": true, \"apply_all_rows\": false, \"type\": \"other\",
+        \"answer_id\": \"7303938760\"}, {\"text\": \"Column 1\", \"visible\": true,
+        \"position\": 1, \"type\": \"col\", \"answer_id\": \"7303938765\"}, {\"text\":
+        \"Column 2\", \"visible\": true, \"position\": 2, \"type\": \"col\", \"answer_id\":
+        \"7303938766\"}, {\"text\": \"Column 3\", \"visible\": true, \"position\":
+        3, \"type\": \"col\", \"answer_id\": \"7303938767\"}, {\"text\": \"Column
+        4\", \"visible\": true, \"position\": 4, \"type\": \"col\", \"answer_id\":
+        \"7303938768\"}], \"position\": 2, \"heading\": \"Matrix, Multi\", \"question_id\":
+        \"630848002\"}, {\"type\": {\"subtype\": \"menu\", \"family\": \"matrix\"},
+        \"answers\": [{\"text\": \"Row 1\", \"visible\": true, \"position\": 1, \"type\":
+        \"row\", \"answer_id\": \"7303942785\"}, {\"text\": \"Row 2\", \"visible\":
+        true, \"position\": 2, \"type\": \"row\", \"answer_id\": \"7303942786\"},
+        {\"text\": \"Row 3\", \"visible\": true, \"position\": 3, \"type\": \"row\",
+        \"answer_id\": \"7303942787\"}, {\"text\": \"Other (please specify)\", \"visible\":
+        true, \"apply_all_rows\": false, \"type\": \"other\", \"answer_id\": \"7303942783\"},
+        {\"items\": [{\"text\": \"Menu 1 Option 1\", \"visible\": true, \"position\":
+        1, \"type\": \"col_choice\", \"answer_id\": \"7303942789\"}, {\"text\": \"Menu
+        1 Option 2\", \"visible\": true, \"position\": 2, \"type\": \"col_choice\",
+        \"answer_id\": \"7303942790\"}, {\"text\": \"Menu 1 Option 3\", \"visible\":
+        true, \"position\": 3, \"type\": \"col_choice\", \"answer_id\": \"7303942791\"}],
+        \"visible\": true, \"text\": \"Menu 1\", \"position\": 1, \"type\": \"col\",
+        \"answer_id\": \"7303942788\"}, {\"items\": [{\"text\": \"Menu 2 Option 1\",
+        \"visible\": true, \"position\": 1, \"type\": \"col_choice\", \"answer_id\":
+        \"7303942793\"}, {\"text\": \"Menu 2 Option 2\", \"visible\": true, \"position\":
+        2, \"type\": \"col_choice\", \"answer_id\": \"7303942794\"}, {\"text\": \"Menu
+        3 Option 3\", \"visible\": true, \"position\": 3, \"type\": \"col_choice\",
+        \"answer_id\": \"7303942795\"}], \"visible\": true, \"text\": \"Menu 2\",
+        \"position\": 2, \"type\": \"col\", \"answer_id\": \"7303942792\"}, {\"items\":
+        [{\"text\": \"Menu 3 Option 1\", \"visible\": true, \"position\": 1, \"type\":
+        \"col_choice\", \"answer_id\": \"7303942797\"}, {\"text\": \"Menu 3 Option
+        2\", \"visible\": true, \"position\": 2, \"type\": \"col_choice\", \"answer_id\":
+        \"7303942798\"}, {\"text\": \"Menu 3 Option 3\", \"visible\": true, \"position\":
+        3, \"type\": \"col_choice\", \"answer_id\": \"7303942799\"}], \"visible\":
+        true, \"text\": \"Menu 3\", \"position\": 3, \"type\": \"col\", \"answer_id\":
+        \"7303942796\"}], \"position\": 3, \"heading\": \"Matrix, Menu\", \"question_id\":
+        \"630848399\"}, {\"type\": {\"subtype\": \"rating\", \"family\": \"matrix\"},
+        \"answers\": [{\"text\": \"Row 1\", \"visible\": true, \"position\": 1, \"type\":
+        \"row\", \"answer_id\": \"7303946208\"}, {\"text\": \"Row 2\", \"visible\":
+        true, \"position\": 2, \"type\": \"row\", \"answer_id\": \"7303946210\"},
+        {\"text\": \"Row 3\", \"visible\": true, \"position\": 3, \"type\": \"row\",
+        \"answer_id\": \"7303946211\"}, {\"text\": \"Other (please specify)\", \"visible\":
+        true, \"apply_all_rows\": false, \"type\": \"other\", \"answer_id\": \"7303946205\"},
+        {\"weight\": 0, \"text\": \"N/A\", \"visible\": true, \"position\": 0, \"type\":
+        \"col\", \"answer_id\": \"7303946203\"}, {\"weight\": 1, \"text\": \"Weight
+        1\", \"visible\": true, \"position\": 1, \"type\": \"col\", \"answer_id\":
+        \"7303946194\"}, {\"weight\": 2, \"text\": \"Weight 2\", \"visible\": true,
+        \"position\": 2, \"type\": \"col\", \"answer_id\": \"7303946196\"}, {\"weight\":
+        3, \"text\": \"Weight 3\", \"visible\": true, \"position\": 3, \"type\": \"col\",
+        \"answer_id\": \"7303946197\"}, {\"weight\": 4, \"text\": \"Weight 4\", \"visible\":
+        true, \"position\": 4, \"type\": \"col\", \"answer_id\": \"7303946199\"},
+        {\"weight\": 10, \"text\": \"Weight 10\", \"visible\": true, \"position\":
+        5, \"type\": \"col\", \"answer_id\": \"7303946202\"}], \"position\": 4, \"heading\":
+        \"Matrix, Rating\", \"question_id\": \"630848756\"}, {\"answers\": [{\"text\":
+        \"Option 1\", \"visible\": true, \"position\": 1, \"type\": \"row\", \"answer_id\":
+        \"7303947190\"}, {\"text\": \"Option 2\", \"visible\": true, \"position\":
+        2, \"type\": \"row\", \"answer_id\": \"7303947192\"}, {\"text\": \"Option
+        3\", \"visible\": true, \"position\": 3, \"type\": \"row\", \"answer_id\":
+        \"7303947194\"}, {\"text\": \"Option 4\", \"visible\": true, \"position\":
+        4, \"type\": \"row\", \"answer_id\": \"7303947196\"}, {\"text\": \"Option
+        5\", \"visible\": true, \"position\": 5, \"type\": \"row\", \"answer_id\":
+        \"7303947198\"}, {\"weight\": 1, \"text\": \"1\", \"visible\": true, \"position\":
+        1, \"type\": \"col\", \"answer_id\": \"7303947200\"}, {\"weight\": 2, \"text\":
+        \"2\", \"visible\": true, \"position\": 2, \"type\": \"col\", \"answer_id\":
+        \"7303947201\"}, {\"weight\": 3, \"text\": \"3\", \"visible\": true, \"position\":
+        3, \"type\": \"col\", \"answer_id\": \"7303947203\"}, {\"weight\": 4, \"text\":
+        \"4\", \"visible\": true, \"position\": 4, \"type\": \"col\", \"answer_id\":
+        \"7303947204\"}, {\"weight\": 5, \"text\": \"5\", \"visible\": true, \"position\":
+        5, \"type\": \"col\", \"answer_id\": \"7303947205\"}], \"type\": {\"subtype\":
+        \"ranking\", \"family\": \"matrix\"}, \"position\": 5, \"heading\": \"Matrix,
+        Ranking\", \"question_id\": \"630848824\"}], \"page_id\": \"161400471\", \"heading\":
+        \"\"}], \"question_count\": 7, \"survey_id\": \"50144489\", \"date_modified\":
+        \"2014-03-18 22:23:00\", \"num_responses\": 3, \"date_created\": \"2014-03-18
+        22:01:00\"}}"
+    http_version: 
+  recorded_at: Tue, 18 Mar 2014 22:33:30 GMT
+- request:
+    method: post
+    uri: https://api.surveymonkey.net/v2/surveys/get_survey_details?api_key=9fakeapikeynumberinhereq
+    body:
+      encoding: UTF-8
+      string: "{\"survey_id\":\"50144354\"}"
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Authorization:
+      - bearer UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma,Date,Content-Length
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 18 Mar 2014 22:33:31 GMT
+      Server:
+      - nginx
+      Sm-Request-Id:
+      - 2f0ddb1d-262b-4f9a-ba3b-970a8662e95f
+      X-Mashery-Message-Id:
+      - 4590601f-f060-4851-b1a9-e80d04cf1158
+      X-Mashery-Responder:
+      - prod-j-worker-us-west-1c-16.mashery.com
+      Content-Length:
+      - '5058'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"status\": 0, \"data\": {\"custom_variables\": [], \"title\": {\"text\":
+        \"Test Survey 2\", \"enabled\": true}, \"language_id\": 1, \"custom_variable_count\":
+        0, \"nickname\": \"\", \"pages\": [{\"sub_heading\": null, \"questions\":
+        [{\"type\": {\"subtype\": \"numerical\", \"family\": \"open_ended\"}, \"answers\":
+        [{\"text\": \"Numerical Field 1\", \"visible\": true, \"position\": 1, \"type\":
+        \"row\", \"answer_id\": \"7303894559\"}, {\"text\": \"Numerical Field 2\",
+        \"visible\": true, \"position\": 2, \"type\": \"row\", \"answer_id\": \"7303894560\"},
+        {\"text\": \"Numerical Field 3\", \"visible\": true, \"position\": 3, \"type\":
+        \"row\", \"answer_id\": \"7303894562\"}], \"position\": 1, \"heading\": \"Open
+        Ended, Numerical\", \"question_id\": \"630843774\"}, {\"answers\": [], \"type\":
+        {\"subtype\": \"single\", \"family\": \"open_ended\"}, \"position\": 2, \"heading\":
+        \"Open Ended, Single\", \"question_id\": \"630843889\"}, {\"answers\": [{\"text\":
+        \"Multi Field 1\", \"visible\": true, \"position\": 1, \"type\": \"row\",
+        \"answer_id\": \"7303896680\"}, {\"text\": \"Multi Field 2\", \"visible\":
+        true, \"position\": 2, \"type\": \"row\", \"answer_id\": \"7303896681\"},
+        {\"text\": \"Multi Field 3\", \"visible\": true, \"position\": 3, \"type\":
+        \"row\", \"answer_id\": \"7303896682\"}], \"type\": {\"subtype\": \"multi\",
+        \"family\": \"open_ended\"}, \"position\": 3, \"heading\": \"Open Ended, Multi\",
+        \"question_id\": \"630843964\"}, {\"answers\": [], \"type\": {\"subtype\":
+        \"essay\", \"family\": \"open_ended\"}, \"position\": 4, \"heading\": \"Open
+        Ended, Essay\", \"question_id\": \"630844131\"}], \"page_id\": \"161399650\",
+        \"heading\": \"\"}, {\"sub_heading\": \"\", \"questions\": [{\"answers\":
+        [{\"text\": \"Name:\", \"visible\": true, \"position\": 0, \"type\": \"name\",
+        \"answer_id\": \"7303900439\"}, {\"text\": \"Company:\", \"visible\": true,
+        \"position\": 0, \"type\": \"company\", \"answer_id\": \"7303900440\"}, {\"text\":
+        \"Address:\", \"visible\": true, \"position\": 0, \"type\": \"address\", \"answer_id\":
+        \"7303900441\"}, {\"text\": \"Address 2:\", \"visible\": true, \"position\":
+        0, \"type\": \"address2\", \"answer_id\": \"7303900442\"}, {\"text\": \"City/Town:\",
+        \"visible\": true, \"position\": 0, \"type\": \"city\", \"answer_id\": \"7303900443\"},
+        {\"text\": \"State:\", \"visible\": true, \"position\": 0, \"type\": \"state\",
+        \"answer_id\": \"7303900444\"}, {\"text\": \"ZIP:\", \"visible\": true, \"position\":
+        0, \"type\": \"zip\", \"answer_id\": \"7303900445\"}, {\"text\": \"Country:\",
+        \"visible\": true, \"position\": 0, \"type\": \"country\", \"answer_id\":
+        \"7303900446\"}, {\"text\": \"Email Address:\", \"visible\": true, \"position\":
+        0, \"type\": \"email\", \"answer_id\": \"7303900447\"}, {\"text\": \"Phone
+        Number:\", \"visible\": true, \"position\": 0, \"type\": \"phone\", \"answer_id\":
+        \"7303900448\"}], \"type\": {\"subtype\": \"us\", \"family\": \"demographic\"},
+        \"position\": 1, \"heading\": \"Demographic, US\", \"question_id\": \"630844311\"},
+        {\"answers\": [{\"text\": \"Name:\", \"visible\": true, \"position\": 0, \"type\":
+        \"name\", \"answer_id\": \"7303901450\"}, {\"text\": \"Company:\", \"visible\":
+        true, \"position\": 0, \"type\": \"company\", \"answer_id\": \"7303901452\"},
+        {\"text\": \"Address 1:\", \"visible\": true, \"position\": 0, \"type\": \"address\",
+        \"answer_id\": \"7303901454\"}, {\"text\": \"Address 2:\", \"visible\": true,
+        \"position\": 0, \"type\": \"address2\", \"answer_id\": \"7303901455\"}, {\"text\":
+        \"City/Town:\", \"visible\": true, \"position\": 0, \"type\": \"city\", \"answer_id\":
+        \"7303901456\"}, {\"text\": \"State/Province:\", \"visible\": true, \"position\":
+        0, \"type\": \"state\", \"answer_id\": \"7303901457\"}, {\"text\": \"ZIP/Postal
+        Code:\", \"visible\": true, \"position\": 0, \"type\": \"zip\", \"answer_id\":
+        \"7303901459\"}, {\"text\": \"Country:\", \"visible\": true, \"position\":
+        0, \"type\": \"country\", \"answer_id\": \"7303901462\"}, {\"text\": \"Email
+        Address:\", \"visible\": true, \"position\": 0, \"type\": \"email\", \"answer_id\":
+        \"7303901463\"}, {\"text\": \"Phone Number:\", \"visible\": true, \"position\":
+        0, \"type\": \"phone\", \"answer_id\": \"7303901465\"}], \"type\": {\"subtype\":
+        \"international\", \"family\": \"demographic\"}, \"position\": 2, \"heading\":
+        \"Demographic, International\", \"question_id\": \"630844428\"}], \"page_id\":
+        \"161399741\", \"heading\": \"\"}, {\"sub_heading\": \"\", \"questions\":
+        [{\"type\": {\"subtype\": \"date_only\", \"family\": \"datetime\"}, \"answers\":
+        [{\"text\": \"Item 1\", \"visible\": true, \"position\": 1, \"type\": \"row\",
+        \"answer_id\": \"7303905333\"}, {\"text\": \"Item 2\", \"visible\": true,
+        \"position\": 2, \"type\": \"row\", \"answer_id\": \"7303905334\"}], \"position\":
+        1, \"heading\": \"Datetime, Date Only\", \"question_id\": \"630844617\"},
+        {\"type\": {\"subtype\": \"time_only\", \"family\": \"datetime\"}, \"answers\":
+        [{\"text\": \"Item 1\", \"visible\": true, \"position\": 1, \"type\": \"row\",
+        \"answer_id\": \"7303908571\"}, {\"text\": \"Item 2\", \"visible\": true,
+        \"position\": 2, \"type\": \"row\", \"answer_id\": \"7303908572\"}], \"position\":
+        2, \"heading\": \"Datetime, Time only\", \"question_id\": \"630845105\"},
+        {\"type\": {\"subtype\": \"both\", \"family\": \"datetime\"}, \"answers\":
+        [{\"text\": \"Item 1\", \"visible\": true, \"position\": 1, \"type\": \"row\",
+        \"answer_id\": \"7303909284\"}, {\"text\": \"Item 2\", \"visible\": true,
+        \"position\": 2, \"type\": \"row\", \"answer_id\": \"7303909285\"}], \"position\":
+        3, \"heading\": \"Datetime, Both\", \"question_id\": \"630845180\"}], \"page_id\":
+        \"161399820\", \"heading\": \"\"}], \"question_count\": 9, \"survey_id\":
+        \"50144354\", \"date_modified\": \"2014-03-18 22:17:00\", \"num_responses\":
+        1, \"date_created\": \"2014-03-18 21:57:00\"}}"
+    http_version: 
+  recorded_at: Tue, 18 Mar 2014 22:33:31 GMT
+- request:
+    method: post
+    uri: https://api.surveymonkey.net/v2/surveys/get_survey_details?api_key=9fakeapikeynumberinhereq
+    body:
+      encoding: UTF-8
+      string: "{\"survey_id\":\"50143846\"}"
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Authorization:
+      - bearer UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma,Date,Content-Length
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 18 Mar 2014 22:33:32 GMT
+      Server:
+      - nginx
+      Sm-Request-Id:
+      - 7f5907f6-0cca-4b1c-8c81-11be6a5f49c9
+      X-Mashery-Message-Id:
+      - b2792dbd-6faa-48a5-9e01-9ddb04cca272
+      X-Mashery-Responder:
+      - prod-j-worker-us-west-1c-17.mashery.com
+      Content-Length:
+      - '7292'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"status\": 0, \"data\": {\"custom_variables\": [], \"title\": {\"text\":
+        \"Test Survey\", \"enabled\": true}, \"language_id\": 1, \"custom_variable_count\":
+        0, \"nickname\": \"\", \"pages\": [{\"sub_heading\": null, \"questions\":
+        [{\"type\": {\"subtype\": \"vertical\", \"family\": \"single_choice\"}, \"answers\":
+        [{\"text\": \"Row 1\", \"visible\": true, \"position\": 1, \"type\": \"row\",
+        \"answer_id\": \"7303846134\"}, {\"text\": \"Row 2\", \"visible\": true, \"position\":
+        2, \"type\": \"row\", \"answer_id\": \"7303846135\"}, {\"text\": \"Row 3\",
+        \"visible\": true, \"position\": 3, \"type\": \"row\", \"answer_id\": \"7303846136\"},
+        {\"text\": \"Other (please specify)\", \"visible\": true, \"apply_all_rows\":
+        false, \"type\": \"other\", \"answer_id\": \"7303846132\"}], \"position\":
+        1, \"heading\": \"Single Choice, Vertical\", \"question_id\": \"630839458\"},
+        {\"type\": {\"subtype\": \"vertical_two_col\", \"family\": \"single_choice\"},
+        \"answers\": [{\"text\": \"Item 1\", \"visible\": true, \"position\": 1, \"type\":
+        \"row\", \"answer_id\": \"7303845298\"}, {\"text\": \"Item 2\", \"visible\":
+        true, \"position\": 2, \"type\": \"row\", \"answer_id\": \"7303845300\"},
+        {\"text\": \"Item 3\", \"visible\": true, \"position\": 3, \"type\": \"row\",
+        \"answer_id\": \"7303845305\"}, {\"text\": \"Item 4\", \"visible\": true,
+        \"position\": 4, \"type\": \"row\", \"answer_id\": \"7303845317\"}, {\"text\":
+        \"Item 5\", \"visible\": true, \"position\": 5, \"type\": \"row\", \"answer_id\":
+        \"7303845320\"}, {\"text\": \"Item 6\", \"visible\": true, \"position\": 6,
+        \"type\": \"row\", \"answer_id\": \"7303845322\"}, {\"text\": \"Item 7\",
+        \"visible\": true, \"position\": 7, \"type\": \"row\", \"answer_id\": \"7303845323\"},
+        {\"text\": \"Item 8\", \"visible\": true, \"position\": 8, \"type\": \"row\",
+        \"answer_id\": \"7303845324\"}, {\"text\": \"Other (please specify)\", \"visible\":
+        true, \"apply_all_rows\": false, \"type\": \"other\", \"answer_id\": \"7303845296\"}],
+        \"position\": 2, \"heading\": \"Single Choice, Vertical 2 Column\", \"question_id\":
+        \"630839758\"}, {\"type\": {\"subtype\": \"vertical_three_col\", \"family\":
+        \"single_choice\"}, \"answers\": [{\"text\": \"Item 1\", \"visible\": true,
+        \"position\": 1, \"type\": \"row\", \"answer_id\": \"7303850663\"}, {\"text\":
+        \"Item 2\", \"visible\": true, \"position\": 2, \"type\": \"row\", \"answer_id\":
+        \"7303850664\"}, {\"text\": \"Item 3\", \"visible\": true, \"position\": 3,
+        \"type\": \"row\", \"answer_id\": \"7303850666\"}, {\"text\": \"Item 4\",
+        \"visible\": true, \"position\": 4, \"type\": \"row\", \"answer_id\": \"7303850667\"},
+        {\"text\": \"Item 5\", \"visible\": true, \"position\": 5, \"type\": \"row\",
+        \"answer_id\": \"7303850670\"}, {\"text\": \"Item 6\", \"visible\": true,
+        \"position\": 6, \"type\": \"row\", \"answer_id\": \"7303850672\"}, {\"text\":
+        \"Other (please specify)\", \"visible\": true, \"apply_all_rows\": false,
+        \"type\": \"other\", \"answer_id\": \"7303850661\"}], \"position\": 3, \"heading\":
+        \"Single Choice, 3 Column\", \"question_id\": \"630840243\"}, {\"type\": {\"subtype\":
+        \"horiz\", \"family\": \"single_choice\"}, \"answers\": [{\"text\": \"Item
+        1\", \"visible\": true, \"position\": 1, \"type\": \"row\", \"answer_id\":
+        \"7303857819\"}, {\"text\": \"Item 2\", \"visible\": true, \"position\": 2,
+        \"type\": \"row\", \"answer_id\": \"7303857820\"}, {\"text\": \"Item 3\",
+        \"visible\": true, \"position\": 3, \"type\": \"row\", \"answer_id\": \"7303857821\"},
+        {\"text\": \"Item 4\", \"visible\": true, \"position\": 4, \"type\": \"row\",
+        \"answer_id\": \"7303857822\"}, {\"text\": \"Other (please specify)\", \"visible\":
+        true, \"apply_all_rows\": false, \"type\": \"other\", \"answer_id\": \"7303857817\"}],
+        \"position\": 4, \"heading\": \"Single Choice, Horizontal\", \"question_id\":
+        \"630840463\"}, {\"type\": {\"subtype\": \"menu\", \"family\": \"single_choice\"},
+        \"answers\": [{\"text\": \"Menu Item 1\", \"visible\": true, \"position\":
+        1, \"type\": \"row\", \"answer_id\": \"7303856956\"}, {\"text\": \"Menu Item
+        2\", \"visible\": true, \"position\": 2, \"type\": \"row\", \"answer_id\":
+        \"7303856957\"}, {\"text\": \"Menu Item 3\", \"visible\": true, \"position\":
+        3, \"type\": \"row\", \"answer_id\": \"7303856958\"}, {\"text\": \"Menu Item
+        4\", \"visible\": true, \"position\": 4, \"type\": \"row\", \"answer_id\":
+        \"7303856959\"}, {\"text\": \"Other (please specify)\", \"visible\": true,
+        \"apply_all_rows\": false, \"type\": \"other\", \"answer_id\": \"7303856951\"}],
+        \"position\": 5, \"heading\": \"Single Choice, Menu\", \"question_id\": \"630840636\"}],
+        \"page_id\": \"161398349\", \"heading\": \"\"}, {\"sub_heading\": \"\", \"questions\":
+        [{\"type\": {\"subtype\": \"vertical\", \"family\": \"multiple_choice\"},
+        \"answers\": [{\"text\": \"Item 1\", \"visible\": true, \"position\": 1, \"type\":
+        \"row\", \"answer_id\": \"7303875543\"}, {\"text\": \"Item 2\", \"visible\":
+        true, \"position\": 2, \"type\": \"row\", \"answer_id\": \"7303875544\"},
+        {\"text\": \"Item 3\", \"visible\": true, \"position\": 3, \"type\": \"row\",
+        \"answer_id\": \"7303875545\"}, {\"text\": \"Item 4\", \"visible\": true,
+        \"position\": 4, \"type\": \"row\", \"answer_id\": \"7303875546\"}, {\"text\":
+        \"Other (please specify)\", \"visible\": true, \"apply_all_rows\": false,
+        \"type\": \"other\", \"answer_id\": \"7303875541\"}], \"position\": 1, \"heading\":
+        \"Multiple Choice, Vertical\", \"question_id\": \"630842220\"}, {\"type\":
+        {\"subtype\": \"vertical_two_col\", \"family\": \"multiple_choice\"}, \"answers\":
+        [{\"text\": \"Item 1\", \"visible\": true, \"position\": 1, \"type\": \"row\",
+        \"answer_id\": \"7303876867\"}, {\"text\": \"Item 2\", \"visible\": true,
+        \"position\": 2, \"type\": \"row\", \"answer_id\": \"7303876868\"}, {\"text\":
+        \"Item 3\", \"visible\": true, \"position\": 3, \"type\": \"row\", \"answer_id\":
+        \"7303876869\"}, {\"text\": \"Item 4\", \"visible\": true, \"position\": 4,
+        \"type\": \"row\", \"answer_id\": \"7303876870\"}, {\"text\": \"Item 5\",
+        \"visible\": true, \"position\": 5, \"type\": \"row\", \"answer_id\": \"7303876871\"},
+        {\"text\": \"Item 6\", \"visible\": true, \"position\": 6, \"type\": \"row\",
+        \"answer_id\": \"7303876872\"}, {\"text\": \"Other (please specify)\", \"visible\":
+        true, \"apply_all_rows\": false, \"type\": \"other\", \"answer_id\": \"7303876865\"}],
+        \"position\": 2, \"heading\": \"Multiple Choice, Vertical Two Column\", \"question_id\":
+        \"630842353\"}, {\"type\": {\"subtype\": \"vertical_three_col\", \"family\":
+        \"multiple_choice\"}, \"answers\": [{\"text\": \"Item 1\", \"visible\": true,
+        \"position\": 1, \"type\": \"row\", \"answer_id\": \"7303879310\"}, {\"text\":
+        \"Item 2\", \"visible\": true, \"position\": 2, \"type\": \"row\", \"answer_id\":
+        \"7303879311\"}, {\"text\": \"Item 3\", \"visible\": true, \"position\": 3,
+        \"type\": \"row\", \"answer_id\": \"7303879312\"}, {\"text\": \"Item 4\",
+        \"visible\": true, \"position\": 4, \"type\": \"row\", \"answer_id\": \"7303879313\"},
+        {\"text\": \"Item 5\", \"visible\": true, \"position\": 5, \"type\": \"row\",
+        \"answer_id\": \"7303879314\"}, {\"text\": \"Item 6\", \"visible\": true,
+        \"position\": 6, \"type\": \"row\", \"answer_id\": \"7303879315\"}, {\"text\":
+        \"Other (please specify)\", \"visible\": true, \"apply_all_rows\": false,
+        \"type\": \"other\", \"answer_id\": \"7303879308\"}], \"position\": 3, \"heading\":
+        \"Multiple Choice, Vertical Three Column\", \"question_id\": \"630842521\"},
+        {\"type\": {\"subtype\": \"horiz\", \"family\": \"multiple_choice\"}, \"answers\":
+        [{\"text\": \"Item 1\", \"visible\": true, \"position\": 1, \"type\": \"row\",
+        \"answer_id\": \"7303880591\"}, {\"text\": \"Item 2\", \"visible\": true,
+        \"position\": 2, \"type\": \"row\", \"answer_id\": \"7303880592\"}, {\"text\":
+        \"Item 3\", \"visible\": true, \"position\": 3, \"type\": \"row\", \"answer_id\":
+        \"7303880593\"}, {\"text\": \"Item 4\", \"visible\": true, \"position\": 4,
+        \"type\": \"row\", \"answer_id\": \"7303880594\"}, {\"text\": \"Other (please
+        specify)\", \"visible\": true, \"apply_all_rows\": false, \"type\": \"other\",
+        \"answer_id\": \"7303880589\"}], \"position\": 4, \"heading\": \"Multiple
+        Choice, Horizontal\", \"question_id\": \"630842615\"}], \"page_id\": \"161399258\",
+        \"heading\": \"\"}], \"question_count\": 9, \"date_modified\": \"2014-03-18
+        22:21:00\", \"num_responses\": 4, \"date_created\": \"2014-03-18 21:43:00\",
+        \"survey_id\": \"50143846\"}}"
+    http_version: 
+  recorded_at: Tue, 18 Mar 2014 22:33:32 GMT
+- request:
+    method: post
+    uri: https://api.surveymonkey.net/v2/surveys/get_respondent_list?api_key=9fakeapikeynumberinhereq
+    body:
+      encoding: UTF-8
+      string: "{\"survey_id\":\"50144489\"}"
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Authorization:
+      - bearer UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma,Date,Content-Length
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 18 Mar 2014 22:34:23 GMT
+      Server:
+      - nginx
+      Sm-Request-Id:
+      - 23a61a71-947f-4071-a129-7163de9cad9f
+      X-Mashery-Message-Id:
+      - 5c3f16cb-c159-488c-aa31-3463b2014f2a
+      X-Mashery-Responder:
+      - prod-j-worker-us-west-1c-17.mashery.com
+      Content-Length:
+      - '169'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"status\": 0, \"data\": {\"respondents\": [{\"respondent_id\": \"3131170764\"},
+        {\"respondent_id\": \"3131170081\"}, {\"respondent_id\": \"3131168491\"}],
+        \"page\": 1, \"page_size\": 1000}}"
+    http_version: 
+  recorded_at: Tue, 18 Mar 2014 22:34:23 GMT
+- request:
+    method: post
+    uri: https://api.surveymonkey.net/v2/surveys/get_respondent_list?api_key=9fakeapikeynumberinhereq
+    body:
+      encoding: UTF-8
+      string: "{\"survey_id\":\"50144354\"}"
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Authorization:
+      - bearer UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma,Date,Content-Length
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 18 Mar 2014 22:34:24 GMT
+      Server:
+      - nginx
+      Sm-Request-Id:
+      - 86cd86fa-0b38-4ec1-8640-f3450b12f15e
+      X-Mashery-Message-Id:
+      - ed72b96d-cda4-45ef-82a1-520c1da96988
+      X-Mashery-Responder:
+      - prod-j-worker-us-west-1c-17.mashery.com
+      Content-Length:
+      - '103'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"status\": 0, \"data\": {\"respondents\": [{\"respondent_id\": \"3131160696\"}],
+        \"page\": 1, \"page_size\": 1000}}"
+    http_version: 
+  recorded_at: Tue, 18 Mar 2014 22:34:24 GMT
+- request:
+    method: post
+    uri: https://api.surveymonkey.net/v2/surveys/get_respondent_list?api_key=9fakeapikeynumberinhereq
+    body:
+      encoding: UTF-8
+      string: "{\"survey_id\":\"50143846\"}"
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Authorization:
+      - bearer UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma,Date,Content-Length
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 18 Mar 2014 22:34:25 GMT
+      Server:
+      - nginx
+      Sm-Request-Id:
+      - 35319ae4-f0b9-4639-88a7-ece18806ae23
+      X-Mashery-Message-Id:
+      - cfb7fa7f-5b44-4213-9324-4e57e6d62aaf
+      X-Mashery-Responder:
+      - prod-j-worker-us-west-1c-16.mashery.com
+      Content-Length:
+      - '202'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"status\": 0, \"data\": {\"respondents\": [{\"respondent_id\": \"3131167482\"},
+        {\"respondent_id\": \"3131158726\"}, {\"respondent_id\": \"3131157843\"},
+        {\"respondent_id\": \"3131156710\"}], \"page\": 1, \"page_size\": 1000}}"
+    http_version: 
+  recorded_at: Tue, 18 Mar 2014 22:34:25 GMT
+- request:
+    method: post
+    uri: https://api.surveymonkey.net/v2/surveys/get_responses?api_key=9fakeapikeynumberinhereq
+    body:
+      encoding: UTF-8
+      string: "{\"survey_id\":\"50144489\",\"respondent_ids\":[\"3131170764\",\"3131170081\",\"3131168491\"]}"
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Authorization:
+      - bearer UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma,Date,Content-Length
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 18 Mar 2014 22:38:43 GMT
+      Server:
+      - nginx
+      Sm-Request-Id:
+      - dff0aef8-a408-4a5a-bc15-fce616a8b788
+      X-Mashery-Message-Id:
+      - 5aa90181-dbad-4400-a732-335507b4b46e
+      X-Mashery-Responder:
+      - prod-j-worker-us-west-1c-17.mashery.com
+      Content-Length:
+      - '3385'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"status\": 0, \"data\": [{\"respondent_id\": \"3131170764\", \"questions\":
+        [{\"answers\": [{\"col\": \"7303936936\", \"row\": \"7303936930\"}, {\"col\":
+        \"7303936937\", \"row\": \"7303936931\"}, {\"col\": \"7303936937\", \"row\":
+        \"7303936932\"}, {\"col\": \"7303936936\", \"row\": \"7303936935\"}, {\"text\":
+        \"Other + Choices\", \"row\": \"0\"}], \"question_id\": \"630847884\"}, {\"answers\":
+        [{\"col\": \"7303938766\", \"row\": \"7303938762\"}, {\"col\": \"7303938766\",
+        \"row\": \"7303938763\"}, {\"col\": \"7303938767\", \"row\": \"7303938763\"},
+        {\"text\": \"Other + Choices\", \"row\": \"0\"}], \"question_id\": \"630848002\"},
+        {\"answers\": [{\"col\": \"7303942788\", \"col_choice\": \"7303942791\", \"row\":
+        \"7303942785\"}, {\"col\": \"7303942792\", \"col_choice\": \"7303942794\",
+        \"row\": \"7303942785\"}, {\"col\": \"7303942796\", \"col_choice\": \"7303942798\",
+        \"row\": \"7303942785\"}, {\"col\": \"7303942788\", \"col_choice\": \"7303942789\",
+        \"row\": \"7303942786\"}, {\"col\": \"7303942788\", \"col_choice\": \"7303942791\",
+        \"row\": \"7303942787\"}, {\"text\": \"Other + Choices\", \"row\": \"0\"}],
+        \"question_id\": \"630848399\"}, {\"answers\": [{\"col\": \"7303946197\",
+        \"row\": \"7303946210\"}, {\"col\": \"7303946197\", \"row\": \"7303946211\"},
+        {\"text\": \"Other + Choices\", \"row\": \"0\"}], \"question_id\": \"630848756\"},
+        {\"answers\": [{\"col\": \"7303947200\", \"row\": \"7303947190\"}, {\"col\":
+        \"7303947201\", \"row\": \"7303947194\"}, {\"col\": \"7303947203\", \"row\":
+        \"7303947196\"}, {\"col\": \"7303947204\", \"row\": \"7303947192\"}, {\"col\":
+        \"7303947205\", \"row\": \"7303947198\"}], \"question_id\": \"630848824\"}]},
+        {\"respondent_id\": \"3131170081\", \"questions\": [{\"answers\": [{\"text\":
+        \"Other\", \"row\": \"0\"}], \"question_id\": \"630847884\"}, {\"answers\":
+        [{\"text\": \"Other\", \"row\": \"0\"}], \"question_id\": \"630848002\"},
+        {\"answers\": [{\"text\": \"Other\", \"row\": \"0\"}], \"question_id\": \"630848399\"},
+        {\"answers\": [{\"text\": \"Other\", \"row\": \"0\"}], \"question_id\": \"630848756\"}]},
+        {\"respondent_id\": \"3131168491\", \"questions\": [{\"answers\": [{\"col\":
+        \"7303936936\", \"row\": \"7303936930\"}, {\"col\": \"7303936937\", \"row\":
+        \"7303936931\"}, {\"col\": \"7303936937\", \"row\": \"7303936932\"}, {\"col\":
+        \"7303936939\", \"row\": \"7303936935\"}], \"question_id\": \"630847884\"},
+        {\"answers\": [{\"col\": \"7303938765\", \"row\": \"7303938762\"}, {\"col\":
+        \"7303938766\", \"row\": \"7303938763\"}, {\"col\": \"7303938767\", \"row\":
+        \"7303938763\"}, {\"col\": \"7303938768\", \"row\": \"7303938764\"}], \"question_id\":
+        \"630848002\"}, {\"answers\": [{\"col\": \"7303942788\", \"col_choice\": \"7303942789\",
+        \"row\": \"7303942785\"}, {\"col\": \"7303942792\", \"col_choice\": \"7303942793\",
+        \"row\": \"7303942785\"}, {\"col\": \"7303942796\", \"col_choice\": \"7303942799\",
+        \"row\": \"7303942785\"}, {\"col\": \"7303942788\", \"col_choice\": \"7303942790\",
+        \"row\": \"7303942786\"}, {\"col\": \"7303942792\", \"col_choice\": \"7303942795\",
+        \"row\": \"7303942786\"}, {\"col\": \"7303942796\", \"col_choice\": \"7303942797\",
+        \"row\": \"7303942786\"}, {\"col\": \"7303942788\", \"col_choice\": \"7303942791\",
+        \"row\": \"7303942787\"}, {\"col\": \"7303942792\", \"col_choice\": \"7303942794\",
+        \"row\": \"7303942787\"}, {\"col\": \"7303942796\", \"col_choice\": \"7303942798\",
+        \"row\": \"7303942787\"}], \"question_id\": \"630848399\"}, {\"answers\":
+        [{\"col\": \"7303946194\", \"row\": \"7303946208\"}, {\"col\": \"7303946203\",
+        \"row\": \"7303946210\"}, {\"col\": \"7303946202\", \"row\": \"7303946211\"}],
+        \"question_id\": \"630848756\"}, {\"answers\": [{\"col\": \"7303947200\",
+        \"row\": \"7303947196\"}, {\"col\": \"7303947201\", \"row\": \"7303947190\"},
+        {\"col\": \"7303947203\", \"row\": \"7303947194\"}, {\"col\": \"7303947204\",
+        \"row\": \"7303947192\"}, {\"col\": \"7303947205\", \"row\": \"7303947198\"}],
+        \"question_id\": \"630848824\"}]}]}"
+    http_version: 
+  recorded_at: Tue, 18 Mar 2014 22:38:43 GMT
+- request:
+    method: post
+    uri: https://api.surveymonkey.net/v2/surveys/get_responses?api_key=9fakeapikeynumberinhereq
+    body:
+      encoding: UTF-8
+      string: "{\"survey_id\":\"50144354\",\"respondent_ids\":[\"3131160696\"]}"
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Authorization:
+      - bearer UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma,Date,Content-Length
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 18 Mar 2014 22:38:43 GMT
+      Server:
+      - nginx
+      Sm-Request-Id:
+      - e9ac512e-24ad-47bf-a72c-28cba5d93542
+      X-Mashery-Message-Id:
+      - a17e5362-74c4-4827-b41d-0e7b6dc033cf
+      X-Mashery-Responder:
+      - prod-j-worker-us-west-1c-16.mashery.com
+      Content-Length:
+      - '1929'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"status\": 0, \"data\": [{\"respondent_id\": \"3131160696\", \"questions\":
+        [{\"answers\": [{\"text\": \"1\", \"row\": \"7303894559\"}, {\"text\": \"2\",
+        \"row\": \"7303894560\"}, {\"text\": \"3\", \"row\": \"7303894562\"}], \"question_id\":
+        \"630843774\"}, {\"answers\": [{\"text\": \"Open Ended\", \"row\": \"0\"}],
+        \"question_id\": \"630843889\"}, {\"answers\": [{\"text\": \"Text\", \"row\":
+        \"7303896680\"}, {\"text\": \"Text\", \"row\": \"7303896681\"}, {\"text\":
+        \"Text\", \"row\": \"7303896682\"}], \"question_id\": \"630843964\"}, {\"answers\":
+        [{\"text\": \"Essay\", \"row\": \"0\"}], \"question_id\": \"630844131\"},
+        {\"answers\": [{\"text\": \"Name\", \"row\": \"7303900439\"}, {\"text\": \"Company\",
+        \"row\": \"7303900440\"}, {\"text\": \"Address\", \"row\": \"7303900441\"},
+        {\"text\": \"Address 2\", \"row\": \"7303900442\"}, {\"text\": \"City\", \"row\":
+        \"7303900443\"}, {\"text\": \"IL\", \"row\": \"7303900444\"}, {\"text\": \"60647\",
+        \"row\": \"7303900445\"}, {\"text\": \"Country\", \"row\": \"7303900446\"},
+        {\"text\": \"email@example.com\", \"row\": \"7303900447\"}, {\"text\": \"800.443.1544\",
+        \"row\": \"7303900448\"}], \"question_id\": \"630844311\"}, {\"answers\":
+        [{\"text\": \"Name Intl\", \"row\": \"7303901450\"}, {\"text\": \"Company
+        Intl\", \"row\": \"7303901452\"}, {\"text\": \"Address Intl\", \"row\": \"7303901454\"},
+        {\"text\": \"Address 2 Intl\", \"row\": \"7303901455\"}, {\"text\": \"City
+        Intl\", \"row\": \"7303901456\"}, {\"text\": \"State Intl\", \"row\": \"7303901457\"},
+        {\"text\": \"Zip Intl\", \"row\": \"7303901459\"}, {\"text\": \"Country Intl\",
+        \"row\": \"7303901462\"}, {\"text\": \"email-intl@example.com\", \"row\":
+        \"7303901463\"}, {\"text\": \"+1 5132 32513\", \"row\": \"7303901465\"}],
+        \"question_id\": \"630844428\"}, {\"answers\": [{\"text\": \"01/01/1954\",
+        \"row\": \"7303905333\"}, {\"text\": \"02/02/1993\", \"row\": \"7303905334\"}],
+        \"question_id\": \"630844617\"}, {\"answers\": [{\"text\": \"10:44 AM\", \"row\":
+        \"7303908571\"}, {\"text\": \"12:44 PM\", \"row\": \"7303908572\"}], \"question_id\":
+        \"630845105\"}, {\"answers\": [{\"text\": \"03/30/1965 01:04 AM\", \"row\":
+        \"7303909284\"}, {\"text\": \"12/25/1999 08:15 PM\", \"row\": \"7303909285\"}],
+        \"question_id\": \"630845180\"}]}]}"
+    http_version: 
+  recorded_at: Tue, 18 Mar 2014 22:38:44 GMT
+- request:
+    method: post
+    uri: https://api.surveymonkey.net/v2/surveys/get_responses?api_key=9fakeapikeynumberinhereq
+    body:
+      encoding: UTF-8
+      string: "{\"survey_id\":\"50143846\",\"respondent_ids\":[\"3131167482\",\"3131158726\",\"3131157843\",\"3131156710\"]}"
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Authorization:
+      - bearer UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI=
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Cache-Control,Content-Language,Content-Type,Expires,Last-Modified,Pragma,Date,Content-Length
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 18 Mar 2014 22:38:44 GMT
+      Server:
+      - nginx
+      Sm-Request-Id:
+      - c1d88c05-5b15-4ca8-bb69-9af52554cfb9
+      X-Mashery-Message-Id:
+      - 9afd3f0b-b84a-4e89-9360-d1ec4c0b2d6d
+      X-Mashery-Responder:
+      - prod-j-worker-us-west-1c-17.mashery.com
+      Content-Length:
+      - '2822'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\"status\": 0, \"data\": [{\"respondent_id\": \"3131167482\", \"questions\":
+        [{\"answers\": [{\"row\": \"7303875544\"}, {\"row\": \"7303875545\"}], \"question_id\":
+        \"630842220\"}]}, {\"respondent_id\": \"3131158726\", \"questions\": [{\"answers\":
+        [{\"row\": \"7303846134\"}, {\"text\": \"Row + Other\", \"row\": \"7303846132\"}],
+        \"question_id\": \"630839458\"}, {\"answers\": [{\"row\": \"7303845320\"},
+        {\"text\": \"Row + Other\", \"row\": \"7303845296\"}], \"question_id\": \"630839758\"},
+        {\"answers\": [{\"row\": \"7303850667\"}, {\"text\": \"Row + Other\", \"row\":
+        \"7303850661\"}], \"question_id\": \"630840243\"}, {\"answers\": [{\"row\":
+        \"7303857820\"}, {\"text\": \"Row + Other\", \"row\": \"7303857817\"}], \"question_id\":
+        \"630840463\"}, {\"answers\": [{\"row\": \"7303856958\"}, {\"text\": \"Row
+        + Other\", \"row\": \"7303856951\"}], \"question_id\": \"630840636\"}, {\"answers\":
+        [{\"row\": \"7303875544\"}, {\"row\": \"7303875545\"}, {\"text\": \"Items
+        + Other\", \"row\": \"7303875541\"}], \"question_id\": \"630842220\"}, {\"answers\":
+        [{\"row\": \"7303876868\"}, {\"row\": \"7303876869\"}, {\"text\": \"Items
+        + Other\", \"row\": \"7303876865\"}], \"question_id\": \"630842353\"}, {\"answers\":
+        [{\"row\": \"7303879315\"}, {\"text\": \"Items + Other\", \"row\": \"7303879308\"}],
+        \"question_id\": \"630842521\"}, {\"answers\": [{\"row\": \"7303880592\"},
+        {\"row\": \"7303880593\"}, {\"text\": \"Items + Other\", \"row\": \"7303880589\"}],
+        \"question_id\": \"630842615\"}]}, {\"respondent_id\": \"3131157843\", \"questions\":
+        [{\"answers\": [{\"text\": \"Other\", \"row\": \"7303846132\"}], \"question_id\":
+        \"630839458\"}, {\"answers\": [{\"text\": \"Other\", \"row\": \"7303845296\"}],
+        \"question_id\": \"630839758\"}, {\"answers\": [{\"text\": \"Other\", \"row\":
+        \"7303850661\"}], \"question_id\": \"630840243\"}, {\"answers\": [{\"text\":
+        \"Other\", \"row\": \"7303857817\"}], \"question_id\": \"630840463\"}, {\"answers\":
+        [{\"text\": \"Other\", \"row\": \"7303856951\"}], \"question_id\": \"630840636\"},
+        {\"answers\": [{\"text\": \"Other\", \"row\": \"7303875541\"}], \"question_id\":
+        \"630842220\"}, {\"answers\": [{\"text\": \"Other\", \"row\": \"7303876865\"}],
+        \"question_id\": \"630842353\"}, {\"answers\": [{\"text\": \"Other\", \"row\":
+        \"7303879308\"}], \"question_id\": \"630842521\"}, {\"answers\": [{\"text\":
+        \"Other\", \"row\": \"7303880589\"}], \"question_id\": \"630842615\"}]}, {\"respondent_id\":
+        \"3131156710\", \"questions\": [{\"answers\": [{\"row\": \"7303846134\"}],
+        \"question_id\": \"630839458\"}, {\"answers\": [{\"row\": \"7303845300\"}],
+        \"question_id\": \"630839758\"}, {\"answers\": [{\"row\": \"7303850666\"}],
+        \"question_id\": \"630840243\"}, {\"answers\": [{\"row\": \"7303857822\"}],
+        \"question_id\": \"630840463\"}, {\"answers\": [{\"row\": \"7303856956\"}],
+        \"question_id\": \"630840636\"}, {\"answers\": [{\"row\": \"7303875543\"},
+        {\"row\": \"7303875544\"}], \"question_id\": \"630842220\"}, {\"answers\":
+        [{\"row\": \"7303876867\"}, {\"row\": \"7303876868\"}, {\"row\": \"7303876871\"}],
+        \"question_id\": \"630842353\"}, {\"answers\": [{\"row\": \"7303879313\"}],
+        \"question_id\": \"630842521\"}, {\"answers\": [{\"row\": \"7303880592\"},
+        {\"row\": \"7303880593\"}], \"question_id\": \"630842615\"}]}]}"
+    http_version: 
+  recorded_at: Tue, 18 Mar 2014 22:38:44 GMT
+recorded_with: VCR 2.8.0
