@@ -2,6 +2,17 @@ require 'spec_helper'
 
 module Missinglink
   describe Survey do
+    before do
+      VCR.insert_cassette 'missinglink', record: :new_episodes, match_requests_on: [:method, :uri, :host, :path, :query, :body_as_json, :headers]
+    end
+
+    before(:each) do
+      Missinglink::Connection.credential_hash = ML_TEST_CREDS
+    end
+
+    after do
+      VCR.eject_cassette
+    end
 
     context "#find_or_create_by_sm_survey_id" do
       let(:survey) { Survey.new }
@@ -20,13 +31,30 @@ module Missinglink
       end
     end
 
-    context "#load_questions" do
+    context "#load_survey_details" do
       let(:survey) { Missinglink::Survey.new(sm_survey_id: 50144489) }
 
       it "should return nil unless Missinglink has its credentials provided" do
-        Missinglink.stub(credentials_provided?: false)
-        Missinglink::Connection.should_not receive(:request)
-        survey.load_questions.should be_nil
+        Missinglink::Connection.stub(credentials_provided?: false)
+        survey.load_survey_details.should be_nil
+      end
+
+      it "should not attempt to update any details unless there are credentials" do
+        Missinglink::Connection.stub(credentials_provided?: false)
+        survey.should_not receive(:update_from_survey_details)
+        survey.load_survey_details
+      end
+
+      it "should update details with a proper response" do
+        SurveyPage.stub(:parse)
+        survey.should receive(:update_from_survey_details)
+        survey.load_survey_details
+      end
+
+      it "should take each page returned and attempt to parse it" do
+        Missinglink::Connection.stub(request: { 'pages' => [1, 2, 3] })
+        SurveyPage.should_receive(:parse).exactly(3).times
+        survey.load_survey_details
       end
     end
 

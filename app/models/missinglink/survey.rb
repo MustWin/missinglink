@@ -15,9 +15,15 @@ module Missinglink
       end
     end
 
-    def load_questions
-      unless Missinglink.credentials_provided?
-        puts "Please provide a hash with api_key and token to fetch survey questions." && return
+    def load_survey_details
+      response = Connection.request('get_survey_details',
+                                         { survey_id: sm_survey_id.to_s })
+      (puts "Error loading survey details for survey #{ self.inspect }." && return) unless response
+
+      update_from_survey_details(response)
+
+      response['pages'].each do |page|
+        SurveyPage.parse(self, page)
       end
     end
 
