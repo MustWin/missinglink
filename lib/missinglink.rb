@@ -1,7 +1,9 @@
 require "missinglink/engine"
+require "missinglink/connection"
 require 'typhoeus'
 
 module Missinglink
+  include Connection
   extend self
 
   def poll_surveys(credential_hash = { api_key: nil, token: nil })
@@ -10,7 +12,7 @@ module Missinglink
       return
     end
 
-    response = JSON.parse(typh_request('get_survey_list', api_key, token).tap {|x| x.run}.response.body)['data']['surveys']
+    response = Connection.request('get_survey_list', api_key, token)['surveys']
     response.each do |s|
       survey = Survey.first_or_create_by_sm_survey_id(s['survey_id'].to_i)
       survey.update_attributes(analysis_url: s['analysis_url'])
@@ -24,8 +26,7 @@ module Missinglink
       return
     end
 
-    request = typh_request('get_survey_details', api_key, token, {survey_id: survey.sm_survey_id.to_s}.to_json).tap { |x| x.run }
-    response = JSON.parse(request.response.body)['data']
+    response = Connection.request('get_survey_details', api_key, token, {survey_id: survey.sm_survey_id.to_s})
 
     survey.update_attributes({date_created: DateTime.parse(response['date_created']),
                               date_modified: DateTime.parse(response['date_modified']),
@@ -46,8 +47,10 @@ module Missinglink
       return
     end
 
-    request = typh_request('get_respondent_list', api_key, token, {survey_id: survey.sm_survey_id.to_s}.to_json).tap { |x| x.run }
-    respondents = JSON.parse(request.response.body)['data']['respondents']
+    respondents = Connection.request('get_respondent_list',
+                                     api_key,
+                                     token,
+                                     {survey_id: survey.sm_survey_id.to_s})['respondents']
     respondents.each do |respondent|
       SurveyRespondentDetail.parse(survey, respondent)
     end
@@ -81,10 +84,9 @@ module Missinglink
 
     while (respondents.size > 0)
       ids = respondents.slice!(0, 100).map { |x| x.sm_respondent_id.to_s }
-      request = typh_request('get_responses', api_key, token,
-                                              { survey_id: survey.sm_survey_id.to_s,
-                                                respondent_ids: ids }.to_json).tap { |x| x.run }
-      response = JSON.parse(request.response.body)['data']
+      response = Connection.request('get_responses', api_key, token,
+                                    { survey_id: survey.sm_survey_id.to_s,
+                                      respondent_ids: ids })
 
       response.each do |r|
         begin
@@ -96,18 +98,4 @@ module Missinglink
     end
   end
 
-  private
-  def typh_request(fragment, api_key, token, body = '{ }')
-    # survey monkey's API limits are obnoxious, this is hacky but an easy way
-    # to ensure that we're always under the 2 QPS limit
-    sleep 0.5 unless ENV["RAILS_ENV"] == 'test'
-
-    Typhoeus::Request.new(
-      "https://api.surveymonkey.net/v2/surveys/#{fragment}",
-      method: :post,
-      params: { api_key: api_key },
-      body: body,
-      headers: { Authorization: "bearer #{token}", :"Content-Type" => "application/json" }
-    )
-  end
 end
