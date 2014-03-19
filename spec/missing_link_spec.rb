@@ -24,22 +24,8 @@ describe Missinglink do
     it "should attempt to update the attributes for the first or new survey by id" do
       survey.should_receive(:update_attributes).exactly(3).times
       Missinglink::Survey.should_receive(:first_or_create_by_sm_survey_id).exactly(3).times.and_return(survey)
-      Missinglink.should_receive(:fetch_survey).exactly(3).times.with(survey)
+      survey.should_receive(:load_survey_details).exactly(3).times
       Missinglink.poll_surveys
-    end
-  end
-
-  context "#fetch_survey" do
-    let(:survey) { Missinglink::Survey.new(sm_survey_id: 50144489) }
-
-    it "should return nil if no credentials are provided" do
-      Missinglink::Connection.stub(credentials_provided?: false)
-      Missinglink.fetch_survey(survey).should be_nil
-    end
-
-    it "should attempt to update the attributes of the survey with a lot of things" do
-      survey.should_receive(:update_from_survey_details)
-      Missinglink.fetch_survey(survey)
     end
   end
 

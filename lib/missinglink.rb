@@ -13,19 +13,7 @@ module Missinglink
     response['surveys'].each do |s|
       survey = Survey.first_or_create_by_sm_survey_id(s['survey_id'].to_i)
       survey.update_attributes(analysis_url: s['analysis_url'])
-      fetch_survey(survey)
-    end
-  end
-
-  def fetch_survey(survey)
-    response = Connection.request('get_survey_details',
-                                       { survey_id: survey.sm_survey_id.to_s })
-    (puts "Error fetching survey." && return) unless response
-
-    survey.update_from_survey_details(response)
-
-    response['pages'].each do |page|
-      SurveyPage.parse(survey, page)
+      survey.load_survey_details
     end
   end
 
