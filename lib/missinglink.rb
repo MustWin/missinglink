@@ -58,13 +58,9 @@ module Missinglink
       return
     end
 
-    # to start, we will only pull down completed surveys, and not re-pull these surveys
-    # if a respondent is complete and has no response, then we need to pull it down
-    # if a respodnent is complete and has a response, then we will not re-pull, it's done
-    respondents = SurveyRespondentDetail.where(survey_id: survey.id,
+    completed_respondents = SurveyRespondentDetail.where(survey_id: survey.id,
                                                status: "completed")
-
-    respondents_to_pull = respondents.select { |r| r.survey_responses.empty? }
+    respondents_to_pull = completed_respondents.select { |r| r.survey_responses.empty? }
 
     fetch_response_answers(survey, respondents_to_pull, credential_hash)
   end
