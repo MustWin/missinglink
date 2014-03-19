@@ -15,6 +15,12 @@ module Missinglink
       end
     end
 
+    def load_questions
+      unless Missinglink.credentials_provided?
+        puts "Please provide a hash with api_key and token to fetch survey questions." && return
+      end
+    end
+
     def update_from_survey_details(response = {})
       return nil if response.nil? || response.empty? || response['title'].nil?
 

@@ -2,9 +2,9 @@ require 'spec_helper'
 
 module Missinglink
   describe Survey do
-    let(:survey) { Survey.new }
 
     context "#find_or_create_by_sm_survey_id" do
+      let(:survey) { Survey.new }
       it "should create and return a new record if there is no survey with the sm_id" do
         Survey.stub(:find_by_sm_survey_id => nil)
         lambda do
@@ -20,7 +20,18 @@ module Missinglink
       end
     end
 
+    context "#load_questions" do
+      let(:survey) { Missinglink::Survey.new(sm_survey_id: 50144489) }
+
+      it "should return nil unless Missinglink has its credentials provided" do
+        Missinglink.stub(credentials_provided?: false)
+        Missinglink::Connection.should_not receive(:request)
+        survey.load_questions.should be_nil
+      end
+    end
+
     context "#update_from_survey_details" do
+      let(:survey) { Survey.new }
       it "should not update any attributes if an empty hash or nothing is passed in" do
         survey.should_not receive(:update_attributes)
         survey.update_from_survey_details
