@@ -18,10 +18,6 @@ module Missinglink
   end
 
   def fetch_respondents(survey)
-    unless Connection.credentials_provided?
-      puts "Please provide a hash with api_key and token to fetch survey respondents." && return
-    end
-
     response = Connection.request('get_respondent_list',
                                           { survey_id: survey.sm_survey_id.to_s })
     (puts "Error fetching respondents." && return) unless response
