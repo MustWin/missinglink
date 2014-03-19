@@ -61,7 +61,6 @@ module Missinglink
     # to start, we will only pull down completed surveys, and not re-pull these surveys
     # if a respondent is complete and has no response, then we need to pull it down
     # if a respodnent is complete and has a response, then we will not re-pull, it's done
-
     respondents = SurveyRespondentDetail.where(survey_id: survey.id,
                                                status: "completed")
 
@@ -83,11 +82,7 @@ module Missinglink
                                       respondent_ids: ids })
 
       response.each do |r|
-        begin
-          SurveyResponse.parse(survey, r) unless r.nil?
-        rescue Exception => e
-          raise "Error processing Survey Response for survey #{ survey.inspect }\n\nResponse hash: #{ response.inspect }\n\nAttempting to parse: #{ r.inspect }\n\nException: #{ e.inspect }"
-        end
+        SurveyResponse.parse(survey, r) unless r.nil?
       end
     end
   end
