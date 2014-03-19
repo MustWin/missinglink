@@ -1,6 +1,5 @@
 require "missinglink/engine"
 require "missinglink/connection"
-require 'typhoeus'
 
 module Missinglink
   include Connection

@@ -1,3 +1,5 @@
+require 'typhoeus'
+
 module Missinglink
   module Connection
     extend self
