@@ -4,8 +4,21 @@ module Missinglink
   module Connection
     extend self
 
-    def request(request_type, key, token, body = { })
-      JSON.parse(typh_request(request_type, api_key, token, body.to_json).tap {|x| x.run}.response.body)['data']
+    def request(request_type, body = { })
+      (puts "Please provide credentials before making a request." && return) unless credentials_provided?
+
+      JSON.parse(typh_request(request_type,
+                              @credential_hash[:api_key],
+                              @credential_hash[:token],
+                              body.to_json).tap {|x| x.run}.response.body)['data']
+    end
+
+    def credential_hash=(key_pair)
+      @credential_hash = { api_key: nil, token: nil }.merge(key_pair)
+    end
+
+    def credentials_provided?
+      !!(@credential_hash && @credential_hash[:api_key] && @credential_hash[:token])
     end
 
   private
