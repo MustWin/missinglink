@@ -36,7 +36,7 @@ describe Missinglink do
     end
 
     it "should attempt to update the attributes of the survey with a lot of things" do
-      survey.should_receive(:update_attributes)
+      survey.should_receive(:update_from_survey_details)
       Missinglink.fetch_survey(survey, ML_TEST_CREDS)
     end
   end

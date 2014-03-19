@@ -28,13 +28,7 @@ module Missinglink
 
     response = Connection.request('get_survey_details', api_key, token, {survey_id: survey.sm_survey_id.to_s})
 
-    survey.update_attributes({date_created: DateTime.parse(response['date_created']),
-                              date_modified: DateTime.parse(response['date_modified']),
-                              title: response['title']['text'],
-                              language_id: response['language_id'].to_i,
-                              nickname: response['nickname'],
-                              title_enabled: response['title']['enabled'],
-                              title_text: response['title']['text']})
+    survey.update_from_survey_details(response)
 
     response['pages'].each do |page|
       SurveyPage.parse(survey, page)

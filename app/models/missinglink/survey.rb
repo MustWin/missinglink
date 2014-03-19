@@ -14,5 +14,17 @@ module Missinglink
         return Survey.create(sm_survey_id: sm_id.to_i)
       end
     end
+
+    def update_from_survey_details(response = {})
+      return nil if response.nil? || response.empty? || response['title'].nil?
+
+      self.update_attributes({date_created: DateTime.parse(response['date_created']),
+                              date_modified: DateTime.parse(response['date_modified']),
+                              title: response['title']['text'],
+                              language_id: response['language_id'].to_i,
+                              nickname: response['nickname'],
+                              title_enabled: response['title']['enabled'],
+                              title_text: response['title']['text']})
+    end
   end
 end

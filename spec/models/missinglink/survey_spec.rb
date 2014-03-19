@@ -19,5 +19,37 @@ module Missinglink
         end.should_not change(Survey, :count)
       end
     end
+
+    context "#update_from_survey_details" do
+      it "should not update any attributes if an empty hash or nothing is passed in" do
+        survey.should_not receive(:update_attributes)
+        survey.update_from_survey_details
+        survey.update_from_survey_details({})
+      end
+
+      it "should not update any attributes if the hash does not have a title key" do
+        survey.should_not receive(:update_attributes)
+        survey.update_from_survey_details({ erm: "fake" })
+      end
+
+      it "should update attributes from the response" do
+        sample_date = DateTime.now.to_s
+        response = { 'date_created' => sample_date,
+                     'date_modified' => sample_date,
+                     'title' => { 'text' => "title text",
+                                  'enabled' => true },
+                     'language_id' => "1",
+                     'nickname' => "nickname" }
+
+        survey.update_from_survey_details(response)
+        survey.date_created.should == DateTime.parse(sample_date)
+        survey.date_modified.should == DateTime.parse(sample_date)
+        survey.title.should == "title text"
+        survey.language_id.should == 1
+        survey.nickname.should == "nickname"
+        survey.title_enabled.should be_true
+        survey.title_text.should == "title text"
+      end
+    end
   end
 end
