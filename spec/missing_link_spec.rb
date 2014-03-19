@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Missinglink do
-
-  ML_TEST_API_KEY = "9fakeapikeynumberinhereq"
-  ML_TEST_TOKEN = "UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI="
-  ML_TEST_CREDS = { api_key: ML_TEST_API_KEY, token: ML_TEST_TOKEN }
   before do
     VCR.insert_cassette 'missinglink', record: :new_episodes, match_requests_on: [:method, :uri, :host, :path, :query, :body_as_json, :headers]
   end
