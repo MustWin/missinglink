@@ -37,6 +37,11 @@ module Missinglink
       end
     end
 
+    def respondents_to_update
+      completed_respondents = survey_respondent_details.completed
+      completed_respondents.select { |r| r.survey_responses.empty? }
+    end
+
     def update_from_survey_details(response = {})
       return nil if response.nil? || response.empty? || response['title'].nil?
 

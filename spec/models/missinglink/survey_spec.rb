@@ -79,6 +79,20 @@ module Missinglink
       end
     end
 
+    context "#respondents_to_update" do
+      let(:survey) { Missinglink::Survey.create(sm_survey_id: 50144354) }
+
+      it "should return an array of all completed survey respondent details without any survey responses" do
+        completed_empty_respondent = SurveyRespondentDetail.new
+        completed_empty_respondent.stub(survey_responses: [])
+        completed_finished_respondent = SurveyRespondentDetail.new
+        completed_finished_respondent.stub(survey_responses: ["item"])
+
+        survey.stub_chain(:survey_respondent_details, :completed) { [completed_empty_respondent, completed_finished_respondent] }
+        survey.respondents_to_update.should == [completed_empty_respondent]
+      end
+    end
+
     context "#update_from_survey_details" do
       let(:survey) { Survey.new }
       it "should not update any attributes if an empty hash or nothing is passed in" do

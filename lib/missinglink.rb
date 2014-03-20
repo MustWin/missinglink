@@ -24,10 +24,7 @@ module Missinglink
   end
 
   def fetch_responses(survey)
-    completed_respondents = SurveyRespondentDetail.where(survey_id: survey.id,
-                                               status: "completed")
-    respondents_to_pull = completed_respondents.select { |r| r.survey_responses.empty? }
-    fetch_response_answers(survey, respondents_to_pull)
+    fetch_response_answers(survey, survey.respondents_to_update)
   end
 
   def fetch_response_answers(survey, respondents)
