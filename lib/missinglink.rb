@@ -18,13 +18,7 @@ module Missinglink
   end
 
   def fetch_respondents(survey)
-    response = Connection.request('get_respondent_list',
-                                          { survey_id: survey.sm_survey_id.to_s })
-    (puts "Error fetching respondents." && return) unless response
-
-    response['respondents'].each do |respondent|
-      SurveyRespondentDetail.parse(survey, respondent)
-    end
+    survey.load_respondents
 
     fetch_responses(survey.reload)
   end

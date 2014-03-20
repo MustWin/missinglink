@@ -27,6 +27,16 @@ module Missinglink
       end
     end
 
+    def load_respondents
+      response = Connection.request('get_respondent_list',
+                                    { survey_id: sm_survey_id.to_s })
+      (puts "Error loading responses for survey #{ self.inspect }" && return) unless response
+
+      response['respondents'].each do |respondent|
+        SurveyRespondentDetail.parse(self, respondent)
+      end
+    end
+
     def update_from_survey_details(response = {})
       return nil if response.nil? || response.empty? || response['title'].nil?
 

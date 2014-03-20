@@ -58,6 +58,27 @@ module Missinglink
       end
     end
 
+    context "#load_respondents" do
+      let(:survey) { Missinglink::Survey.create(sm_survey_id: 50144354) }
+
+      it "should return nil unelss Missinglink has its credentials provided" do
+        Missinglink::Connection.stub(credentials_provided?: false)
+        survey.load_respondents.should be_nil
+      end
+
+      it "should not parse any respondent information without a respose" do
+        Missinglink::Connection.stub(credentials_provided?: false)
+        SurveyRespondentDetail.should_not receive(:parse)
+        survey.load_respondents
+      end
+
+      it "should parse respondent detail for however many responses there are" do
+        Missinglink::Connection.stub(request: { 'respondents' => [1, 1, 1] })
+        SurveyRespondentDetail.should receive(:parse).with(survey, 1).exactly(3).times
+        survey.load_respondents
+      end
+    end
+
     context "#update_from_survey_details" do
       let(:survey) { Survey.new }
       it "should not update any attributes if an empty hash or nothing is passed in" do
