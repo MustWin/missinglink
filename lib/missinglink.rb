@@ -18,7 +18,7 @@ module Missinglink
   end
 
   def fetch_respondents(survey)
-    survey.load_respondents
+    return if survey.load_respondents.nil?
 
     fetch_responses(survey.reload)
   end
@@ -28,18 +28,6 @@ module Missinglink
   end
 
   def fetch_response_answers(survey, respondents)
-    respondents = [respondents] unless respondents.is_a? Array
-    while (respondents.size > 0)
-      ids = respondents.slice!(0, 100).map { |x| x.sm_respondent_id.to_s }
-      response = Connection.request('get_responses',
-                                         { survey_id: survey.sm_survey_id.to_s,
-                                           respondent_ids: ids })
-
-      (puts "Error fetching response answers" && return) unless response
-
-      response.each do |r|
-        SurveyResponse.parse(survey, r) unless r.nil?
-      end
-    end
+    survey.load_response_details(respondents)
   end
 end

@@ -93,6 +93,37 @@ module Missinglink
       end
     end
 
+    context "#load_response_details" do
+      let(:survey) { Missinglink::Survey.create(sm_survey_id: 50144354) }
+      let(:survey_respondent_detail) { Missinglink::SurveyRespondentDetail.new(survey: survey, sm_respondent_id: 3131160696) }
+
+      it "should return nil unless Missinglink has its credentials provided" do
+        Missinglink::Connection.stub(credentials_provided?: false)
+        SurveyResponse.stub(:parse)
+        survey.load_response_details([survey_respondent_detail]).should be_nil
+      end
+
+      it "should send a single request with all respondent IDs if there are under 100 and parse each" do
+        respondents = [survey_respondent_detail] * 4
+        Missinglink::Connection.should_receive(:request) { [0]*4 }.exactly(1).times
+        SurveyResponse.should_receive(:parse).exactly(4).times
+        survey.load_response_details(respondents)
+      end
+
+      it "should send a request for every group of 100" do
+        respondents = [survey_respondent_detail] * 104
+        Missinglink::Connection.should_receive(:request) { [1] }.exactly(2).times
+        SurveyResponse.stub(:parse)
+        survey.load_response_details(respondents)
+      end
+
+      it "should work for just one even if it's not an array" do
+        Missinglink::Connection.should_receive(:request) { [1] }.exactly(1).times
+        SurveyResponse.stub(:parse)
+        survey.load_response_details(survey_respondent_detail)
+      end
+    end
+
     context "#update_from_survey_details" do
       let(:survey) { Survey.new }
       it "should not update any attributes if an empty hash or nothing is passed in" do
