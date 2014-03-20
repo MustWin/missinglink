@@ -25,6 +25,8 @@ module Missinglink
       response['pages'].each do |page|
         SurveyPage.parse(self, page)
       end
+
+      return true
     end
 
     def load_respondents
@@ -35,6 +37,8 @@ module Missinglink
       response['respondents'].each do |respondent|
         SurveyRespondentDetail.parse(self, respondent)
       end
+
+      return true
     end
 
     def respondents_to_update
