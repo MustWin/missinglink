@@ -22,5 +22,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails", '~> 2.14'
   s.add_development_dependency "webmock", '~> 1.17'
   s.add_development_dependency "vcr", "~> 2.8"
+  s.add_development_dependency "pry", '~> 0.9'
   s.add_runtime_dependency "typhoeus", '~> 0.6'
 end

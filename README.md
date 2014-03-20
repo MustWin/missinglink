@@ -10,15 +10,27 @@ missinglink is a gem for interfacing with the [SurveyMonkey API](https://develop
 
 ## How to use
 
-    Missinglink.poll_surveys({ api_key: API_KEY, token: TOKEN })
-    Missinglink::Survey.each do |s|
-      Missinglink.fetch_respondents(s, { api_key: API_KEY, token: TOKEN })
+    Missinglink::Connection.credential_hash = { api_key: API_KEY, token: TOKEN }
+    Missinglink.poll_surveys
+    Missinglink::Survey.each do |survey|
+      Missinglink.fetch_respondents(survey)
     end
+
+Other methods:
+
+* `survey.load_survey_details` to pull down question structure for a
+  specific structure, if it has not been updated yet
+
+* `survey.load_respondents` to get the base respondent detail for a
+  survey
+
+* `survey.load_response_details(respondents)` to pull down all of the
+  answers given for any set of respondents to a survey
 
 ## Coming Soon
 
-Yeah, credentials shouldn't need to be passed in a ton, so that'll
-become a module eventually. But not yet.
+  Survey responses should have more easily accessible answers, so
+  that'll be next.
 
 ## Questions?
 

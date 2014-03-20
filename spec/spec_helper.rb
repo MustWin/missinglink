@@ -9,6 +9,10 @@ Dir[File.join(ENGINE_RAILS_ROOT, "spec/support/**/*.rb")].each {|f| require f }
 
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
+ML_TEST_API_KEY = "9fakeapikeynumberinhereq"
+ML_TEST_TOKEN = "UFHRfakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttoken-fakeaccounttokeniI="
+ML_TEST_CREDS = { api_key: ML_TEST_API_KEY, token: ML_TEST_TOKEN }
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true

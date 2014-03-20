@@ -6,6 +6,8 @@ module Missinglink
     has_many :survey_responses
     has_many :survey_response_answers, through: :survey_responses
 
+    scope :completed, -> { where(status: "completed") }
+
     def self.parse(survey, hash)
       srd = SurveyRespondentDetail.first_or_create_by_survey_details(survey.id, hash['respondent_id'])
 
