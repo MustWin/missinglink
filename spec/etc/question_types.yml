@@ -1,0 +1,45 @@
+# first_survey_response_answer_text:
+#   pull the first SRA, and use the text
+# answer_row_match_for_survey_response_answer_text:
+#   pull each SRA, use the row answer, and the text if present
+# row_column_survey_response_answers_and_text
+#   pull each SRA, combo row/column search, "other" just has text
+# row_column_and_choice_survey_response_answers_and_text:
+#   pull each SRA, combo row/column/colchoice search, "other" text
+# none:
+#   this is not actually a question, so ignore it
+
+
+open_ended:
+  essay: first_survey_response_answer_text
+  multi: answer_row_match_for_survey_response_answer_text
+  numerical: answer_row_match_for_survey_response_answer_text
+  single: first_survey_response_answer_text
+single_choice:
+  vertical: answer_row_match_for_survey_response_answer_text
+  vertical_two_col: answer_row_match_for_survey_response_answer_text
+  vertical_three_col: answer_row_match_for_survey_response_answer_text
+  horiz: answer_row_match_for_survey_response_answer_text
+  menu: answer_row_match_for_survey_response_answer_text
+multiple_choice:
+  vertical: answer_row_match_for_survey_response_answer_text
+  vertical_two_col: answer_row_match_for_survey_response_answer_text
+  vertical_three_col: answer_row_match_for_survey_response_answer_text
+  horiz: answer_row_match_for_survey_response_answer_text
+matrix:
+  single: row_column_survey_response_answers_and_text
+  multi: row_column_survey_response_answers_and_text
+  menu: row_column_and_choice_survey_response_answers_and_text
+  rating: row_column_survey_response_answers_and_text
+  ranking: row_column_survey_response_answers_and_text
+demographic:
+  us: answer_row_match_for_survey_response_answer_text
+  international: answer_row_match_for_survey_response_answer_text
+datetime:
+  date_only: answer_row_match_for_survey_response_answer_text
+  time_only: answer_row_match_for_survey_response_answer_text
+  both: answer_row_match_for_survey_response_answer_text
+presentation:
+  image: none
+  video: none
+  descriptive_text: none
