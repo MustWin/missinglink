@@ -18,6 +18,12 @@ module Missinglink
       answer.survey_question = question
       answer.save
 
+      if hash['items'] then
+        hash['items'].each do |sub_item|
+          SurveyAnswer.parse(question, sub_item)
+        end
+      end
+
       return answer
     end
 
