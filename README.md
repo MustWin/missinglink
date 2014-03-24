@@ -2,6 +2,9 @@
 
 missinglink is a gem for interfacing with the [SurveyMonkey API](https://developer.surveymonkey.com/Home).
 
+[![Build
+Status](https://travis-ci.org/MustWin/missinglink.svg?branch=master)](https://travis-ci.org/MustWin/missinglink)
+
 ## How to install
 
     gem install ~/missinglink/missinglink-0.1.0.gem
