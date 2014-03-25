@@ -7,7 +7,7 @@ Status](https://travis-ci.org/MustWin/missinglink.svg?branch=master)](https://tr
 
 ## How to install
 
-    gem install ~/missinglink/missinglink-0.1.0.gem
+    gem install missinglink
     bundle exec rake missinglink:install:migrations
     bundle exec rake db:migrate
 
@@ -15,7 +15,7 @@ Status](https://travis-ci.org/MustWin/missinglink.svg?branch=master)](https://tr
 
     Missinglink::Connection.credential_hash = { api_key: API_KEY, token: TOKEN }
     Missinglink.poll_surveys
-    Missinglink::Survey.each do |survey|
+    Missinglink::Survey.all.each do |survey|
       Missinglink.fetch_respondents(survey)
     end
 
@@ -30,10 +30,16 @@ Other methods:
 * `survey.load_response_details(respondents)` to pull down all of the
   answers given for any set of respondents to a survey
 
-## Coming Soon
+* `survey_question.possible_responses` to list all response answers for
+  a given question in the form of a hash, with the key as the text of
+  the answer and the value as a representative survey response answer
+  object
 
-  Survey responses should have more easily accessible answers, so
-  that'll be next.
+* `survey_question.similar_response_answers(response_answer)` to find
+  all answers that are similar to a given answer, based on the qustion
+  type. for instance, a single text field type question will find all
+  answers that have the same text, but a matrix will find those that
+  have the same row and column value.
 
 ## Questions?
 

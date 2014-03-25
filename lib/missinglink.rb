@@ -30,4 +30,8 @@ module Missinglink
   def fetch_response_answers(survey, respondents)
     survey.load_response_details(respondents)
   end
+
+  def answer_strategies
+    @@answer_strategies ||= YAML.load_file("etc/question_types.yml")
+  end
 end
