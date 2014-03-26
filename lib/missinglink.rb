@@ -32,6 +32,6 @@ module Missinglink
   end
 
   def answer_strategies
-    @@answer_strategies ||= YAML.load_file("etc/question_types.yml")
+    @@answer_strategies ||= YAML.load_file(File.join(File.dirname(File.expand_path(__FILE__)), "../etc/question_types.yml"))
   end
 end

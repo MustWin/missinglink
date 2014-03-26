@@ -85,6 +85,10 @@ module Missinglink
                                                row_survey_answer_id: 20,
                                                col_survey_answer_id: 21,
                                                col_choice_survey_answer_id: 32) }
+      let(:sra7) { SurveyResponseAnswer.create(text: "sra7",
+                                               row_survey_answer_id: nil,
+                                               col_survey_answer_id: nil,
+                                               col_choice_survey_answer_id: nil) }
       before(:each) do
         [10, 11, 12, 20, 21, 22, 30, 31, 32].each do |n|
           allow(SurveyAnswer).to receive(:find).with(n) { SurveyAnswer.new(text: n.to_s) }
@@ -105,8 +109,8 @@ module Missinglink
             subject.possible_responses(true).should == { "10" => sra1.id,
                                                          "20" => sra2.id,
                                                          "30" => sra3.id,
-                                                         "Other: sra1" => sra1.id,
-                                                         "Other: sra3" => sra3.id }
+                                                         "10: sra1" => sra1.id,
+                                                         "30: sra3" => sra3.id }
             subject.possible_responses.should == { "10" => sra1.id,
                                                    "20" => sra2.id,
                                                    "30" => sra3.id }
@@ -114,12 +118,11 @@ module Missinglink
 
           it "for row_column_survey_response_answers_and_text" do
             subject.stub(answer_strategy: "row_column_survey_response_answers_and_text")
-            subject.stub(survey_response_answers: [sra1, sra2, sra3])
+            subject.stub(survey_response_answers: [sra1, sra2, sra3, sra7])
             subject.possible_responses(true).should == { "10: 11" => sra1.id,
                                                          "20: 21" => sra2.id,
                                                          "30: 31" => sra3.id,
-                                                         "Other: sra1" => sra1.id,
-                                                         "Other: sra3" => sra3.id }
+                                                         "Other: sra7" => sra7.id }
             subject.possible_responses.should == { "10: 11" => sra1.id,
                                                    "20: 21" => sra2.id,
                                                    "30: 31" => sra3.id }
@@ -127,12 +130,11 @@ module Missinglink
 
           it "for row_column_and_choice_survey_response_answers_and_text" do
             subject.stub(answer_strategy: "row_column_and_choice_survey_response_answers_and_text")
-            subject.stub(survey_response_answers: [sra1, sra2, sra4])
+            subject.stub(survey_response_answers: [sra1, sra2, sra4, sra7])
             subject.possible_responses(true).should == { "10, 11: 12" => sra1.id,
                                                          "20, 21: 22" => sra2.id,
                                                          "10, 21: 32" => sra4.id,
-                                                         "Other: sra1" => sra1.id,
-                                                         "Other: sra3" => sra4.id }
+                                                         "Other: sra7" => sra7.id }
             subject.possible_responses.should == { "10, 11: 12" => sra1.id,
                                                    "20, 21: 22" => sra2.id,
                                                    "10, 21: 32" => sra4.id }
