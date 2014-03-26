@@ -4,3 +4,8 @@ rvm:
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rspec
+notifications:
+  slack:
+    rooms:
+      - mustwin:apZp8X0ykT8iOE8Z1y5lyiUs#collectively
+      - mustwin:apZp8X0ykT8iOE8Z1y5lyiUs#collectively-bots
