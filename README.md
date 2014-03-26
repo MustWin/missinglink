@@ -41,6 +41,9 @@ Other methods:
   answers that have the same text, but a matrix will find those that
   have the same row and column value.
 
+* `survey_respondent_detail.response_to_question(question)` will return
+  a plaintext response for a question, if it exists.
+
 ## Questions?
 
 Contact Trey at <trey@mustwin.com> or find him on [github](https://www.github.com/umtrey).
