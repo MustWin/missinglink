@@ -26,6 +26,43 @@ module Missinglink
       end
     end
 
+    def response_to_question(question)
+      return nil unless response = survey_responses.find_by_survey_question_id(question.id)
+      response_texts = []
+
+      case question.answer_strategy
+      when "first_survey_response_answer_text"
+        return response.survey_response_answers.first.text
+      when "answer_row_match_for_survey_response_answer_text"
+        response.survey_response_answers.each do |sra|
+          if sra.text.nil?
+            response_texts << SurveyAnswer.find(sra.row_survey_answer_id).text
+          else
+            response_texts << (SurveyAnswer.find(sra.row_survey_answer_id).text + ": " + sra.text)
+          end
+        end
+      when "row_column_survey_response_answers_and_text"
+        response.survey_response_answers.each do |sra|
+          if sra.text.nil?
+            response_texts << (SurveyAnswer.find(sra.row_survey_answer_id).text + ": " + SurveyAnswer.find(sra.col_survey_answer_id).text)
+          else
+            response_texts << "Other: #{ sra.text }"
+          end
+        end
+      when "row_column_and_choice_survey_response_answers_and_text"
+        response.survey_response_answers.each do |sra|
+          if sra.text.nil?
+            response_texts << (SurveyAnswer.find(sra.row_survey_answer_id).text + ", " +
+                               SurveyAnswer.find(sra.col_survey_answer_id).text + ": " +
+                               SurveyAnswer.find(sra.col_choice_survey_answer_id).text)
+          else
+            response_texts << "Other: #{ sra.text }"
+          end
+        end
+      end
+      return response_texts.join("; ")
+    end
+
   private
     def self.prepare_respondent_details(respondent_hash)
       hash = { collection_mode: respondent_hash['collection_mode'],

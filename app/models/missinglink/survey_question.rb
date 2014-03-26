@@ -91,7 +91,6 @@ module Missinglink
       end
     end
 
-  private
     def answer_strategy
       Missinglink.answer_strategies[type_family][type_subtype]
     end
