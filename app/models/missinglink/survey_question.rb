@@ -91,6 +91,21 @@ module Missinglink
       end
     end
 
+    def question_parts
+      return nil if survey_response_answers.empty?
+      if answer_strategy == "row_column_survey_response_answers_and_text" ||
+         answer_strategy == "row_column_and_choice_survey_response_answers_and_text"
+        return {}.tap do |hash|
+          survey_response_answers.each do |sra|
+            sa_row = (sra.row_survey_answer_id ? SurveyAnswer.find(sra.row_survey_answer_id) : nil)
+            hash[sa_row.text] = sra.row_survey_answer_id unless (sa_row.nil? || hash[sa_row.text])
+          end
+        end
+      else
+        return nil
+      end
+    end
+
     def answer_strategy
       Missinglink.answer_strategies[type_family][type_subtype]
     end

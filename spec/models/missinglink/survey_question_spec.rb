@@ -179,6 +179,44 @@ module Missinglink
           subject.similar_response_answers(sra4, true).should == [sra3, sra4]
         end
       end # similar_repsonse_answers
+
+      context "#question_parts" do
+        it "should return nil if there are no answers for the question" do
+          subject.question_parts.should be_nil
+        end
+
+        context "by question type" do
+          before(:each) do
+            sr = SurveyResponse.new
+            subject.stub(survey_response_answers: [sra1, sra2])
+          end
+
+          it "should return nil for first_survey_response_answer_text" do
+            subject.stub(answer_strategy: "first_survey_response_answer_text")
+            subject.question_parts.should be_nil
+          end
+
+          it "should return nil for answer_row_match_for_survey_response_answer_text" do
+            subject.stub(answer_strategy: "answer_row_match_for_survey_response_answer_text")
+            subject.question_parts.should be_nil
+          end
+
+          it "should return the row answers for row_column_survey_response_answers_and_text" do
+            subject.stub(answer_strategy: "row_column_survey_response_answers_and_text")
+            subject.question_parts.should == { "10" => 10, "20" => 20 }
+          end
+
+          it "should return the row answers for row_column_and_choice_survey_response_answers_and_text" do
+            subject.stub(answer_strategy: "row_column_and_choice_survey_response_answers_and_text")
+            subject.question_parts.should == { "10" => 10, "20" => 20 }
+          end
+
+          it "should return nil for none" do
+            subject.stub(answer_strategy: "none")
+            subject.question_parts.should be_nil
+          end
+        end
+      end
     end # search interfaces
   end # survey question
 end
