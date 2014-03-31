@@ -106,14 +106,10 @@ module Missinglink
           it "for answer_row_for_subquestion" do
             subject.stub(answer_strategy: "answer_row_for_subquestion")
             subject.stub(survey_response_answers: [sra1, sra2, sra3])
-            subject.possible_responses(true).should == { "10" => sra1.id,
-                                                         "20" => sra2.id,
-                                                         "30" => sra3.id,
-                                                         "10: sra1" => sra1.id,
+            subject.possible_responses(true).should == { "10: sra1" => sra1.id,
                                                          "30: sra3" => sra3.id }
-            subject.possible_responses.should == { "10" => sra1.id,
-                                                   "20" => sra2.id,
-                                                   "30" => sra3.id }
+            subject.possible_responses.should == { "10: sra1" => sra1.id,
+                                                   "30: sra3" => sra3.id }
           end
 
           it "for answer_row_for_response" do

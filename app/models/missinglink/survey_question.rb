@@ -49,8 +49,7 @@ module Missinglink
           when "first_survey_response_answer_text"
             hash[sra.text] = sra.id unless (sra.text.nil? || hash[sra.text])
           when "answer_row_for_subquestion"
-            other_text = ((!search_other || sra.text.nil?) ? nil : "#{ (sa_row.try(:text) || "Other") }: #{ sra.text }")
-            hash[sa_row.text] = sra.id unless (sa_row.nil? || hash[sa_row.text])
+            other_text = (sra.text.nil? ? nil : "#{ (sa_row.try(:text) || "Other") }: #{ sra.text }")
             hash[other_text] = sra.id unless (other_text.nil? || hash[other_text])
           when "answer_row_for_response"
             other_text = ((!search_other || sra.text.nil?) ? nil : "#{ (sa_row.try(:text) || "Other") }: #{ sra.text }")
