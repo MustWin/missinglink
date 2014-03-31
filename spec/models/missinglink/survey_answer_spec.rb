@@ -69,6 +69,56 @@ module Missinglink
           SurveyAnswer.first_or_create_by_question_details(10, 50).should == survey_answer
         end.should_not change(SurveyAnswer, :count)
       end
+    end # parse
+
+    context "#possible_responses" do
+      let(:sra1) { SurveyResponseAnswer.create(text: "sra1",
+                                               row_survey_answer_id: 10,
+                                               col_survey_answer_id: 11,
+                                               col_choice_survey_answer_id: 12) }
+      let(:sra2) { SurveyResponseAnswer.create(text: nil,
+                                               row_survey_answer_id: 10,
+                                               col_survey_answer_id: 11,
+                                               col_choice_survey_answer_id: 22) }
+      let(:sra3) { SurveyResponseAnswer.create(text: "sra3",
+                                               row_survey_answer_id: 10,
+                                               col_survey_answer_id: 21,
+                                               col_choice_survey_answer_id: 32) }
+      let(:sra4) { SurveyResponseAnswer.create(text: "sra3",
+                                               row_survey_answer_id: 20,
+                                               col_survey_answer_id: 21,
+                                               col_choice_survey_answer_id: 32) }
+      before(:each) do
+        survey_question.stub(possible_responses: { "sra1 sample" => sra1.id,
+                                                   "sra2 sample" => sra2.id,
+                                                   "sra3 sample" => sra3.id,
+                                                   "sra4 sample" => sra4.id })
+        survey_answer.stub(survey_question: survey_question)
+        survey_answer.stub(id: 10)
+      end
+
+      context "should return the question's possible responses" do
+        ["first_survey_response_answer_text", "answer_row_for_response"].each do |strategy|
+          it "for #{ strategy }" do
+            survey_question.stub(answer_strategy: strategy)
+            survey_answer.possible_responses.should == { "sra1 sample" => sra1.id,
+                                                         "sra2 sample" => sra2.id,
+                                                         "sra3 sample" => sra3.id,
+                                                         "sra4 sample" => sra4.id }
+          end
+        end
+      end
+
+      context "should pull down the question's possible responses and only grab those that have a matching row" do
+        ["answer_row_for_subquestion", "answer_row_and_column_for_response", "answer_row_column_choice_for_response"].each do |strategy|
+          it "for #{ strategy }" do
+            survey_question.stub(answer_strategy: strategy)
+            survey_answer.possible_responses.should == { "sra1 sample" => sra1.id,
+                                                         "sra2 sample" => sra2.id,
+                                                         "sra3 sample" => sra3.id }
+          end
+        end
+      end
     end
   end
 end

@@ -34,5 +34,20 @@ module Missinglink
         return SurveyAnswer.create(survey_question_id: question_id, sm_answer_id: sm_id.to_i)
       end
     end
+
+    def possible_responses
+      strategy = survey_question.answer_strategy
+      filtered = survey_question.possible_responses.select do |k,v|
+        sra = SurveyResponseAnswer.find(v)
+        if strategy == "answer_row_and_column_for_response" ||
+           strategy == "answer_row_for_subquestion" ||
+           strategy == "answer_row_column_choice_for_response"
+          (sra.row_survey_answer_id == self.id)
+        else
+          true
+        end
+      end
+      return filtered
+    end
   end
 end
