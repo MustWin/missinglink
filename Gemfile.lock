@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    missinglink (0.2.1.2)
+    missinglink (0.2.2)
       rails (~> 4.0)
       typhoeus (~> 0.6)
 
