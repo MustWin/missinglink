@@ -103,6 +103,19 @@ module Missinglink
             subject.possible_responses.should == { "sra1" => sra1.id, "sra3" => sra3.id }
           end
 
+          it "for answer_row_for_subquestion" do
+            subject.stub(answer_strategy: "answer_row_for_subquestion")
+            subject.stub(survey_response_answers: [sra1, sra2, sra3])
+            subject.possible_responses(true).should == { "10" => sra1.id,
+                                                         "20" => sra2.id,
+                                                         "30" => sra3.id,
+                                                         "10: sra1" => sra1.id,
+                                                         "30: sra3" => sra3.id }
+            subject.possible_responses.should == { "10" => sra1.id,
+                                                   "20" => sra2.id,
+                                                   "30" => sra3.id }
+          end
+
           it "for answer_row_for_response" do
             subject.stub(answer_strategy: "answer_row_for_response")
             subject.stub(survey_response_answers: [sra1, sra2, sra3])
@@ -150,6 +163,15 @@ module Missinglink
             subject.similar_response_answers(sra3).should == [sra3, sra4]
           end
 
+          it "for answer_row_for_subquestion" do
+            subject.stub(answer_strategy: "answer_row_for_subquestion")
+            subject.stub(survey_response_answers: [sra1, sra2, sra3, sra4, sra5, sra6, sra7])
+            subject.similar_response_answers(sra1).should == [sra1]
+            subject.similar_response_answers(sra2).should == [sra2]
+            subject.similar_response_answers(sra5).should == [sra5, sra6]
+            subject.similar_response_answers(sra6).should == [sra5, sra6]
+          end
+
           it "for answer_row_for_response" do
             subject.stub(answer_strategy: "answer_row_for_response")
             subject.stub(survey_response_answers: [sra1, sra2, sra3, sra4, sra5])
@@ -194,6 +216,11 @@ module Missinglink
           it "should return nil for first_survey_response_answer_text" do
             subject.stub(answer_strategy: "first_survey_response_answer_text")
             subject.question_parts.should be_nil
+          end
+
+          it "should return the row answers for answer_row_for_subquestion" do
+            subject.stub(answer_strategy: "answer_row_for_subquestion")
+            subject.question_parts.should == { "10" => 10, "20" => 20 }
           end
 
           it "should return nil for answer_row_for_response" do

@@ -48,6 +48,10 @@ module Missinglink
           case answer_strategy
           when "first_survey_response_answer_text"
             hash[sra.text] = sra.id unless (sra.text.nil? || hash[sra.text])
+          when "answer_row_for_subquestion"
+            other_text = ((!search_other || sra.text.nil?) ? nil : "#{ (sa_row.try(:text) || "Other") }: #{ sra.text }")
+            hash[sa_row.text] = sra.id unless (sa_row.nil? || hash[sa_row.text])
+            hash[other_text] = sra.id unless (other_text.nil? || hash[other_text])
           when "answer_row_for_response"
             other_text = ((!search_other || sra.text.nil?) ? nil : "#{ (sa_row.try(:text) || "Other") }: #{ sra.text }")
             hash[sa_row.text] = sra.id unless (sa_row.nil? || hash[sa_row.text])
@@ -73,6 +77,11 @@ module Missinglink
       end
 
       case answer_strategy
+      when "answer_row_for_subquestion"
+        survey_response_answers.select do |sra|
+          sra.row_survey_answer_id == response_answer.row_survey_answer_id &&
+            sra.text == response_answer.text
+        end.sort
       when "answer_row_for_response"
         survey_response_answers.select do |sra|
           sra.row_survey_answer_id == response_answer.row_survey_answer_id
@@ -93,7 +102,8 @@ module Missinglink
 
     def question_parts
       return nil if survey_response_answers.empty?
-      if answer_strategy == "answer_row_and_column_for_response" ||
+      if answer_strategy == "answer_row_for_subquestion" ||
+         answer_strategy == "answer_row_and_column_for_response" ||
          answer_strategy == "answer_row_column_choice_for_response"
         return {}.tap do |hash|
           survey_response_answers.each do |sra|

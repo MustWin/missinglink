@@ -1,5 +1,7 @@
 # first_survey_response_answer_text:
 #   pull the first SRA, and use the text
+# answer_row_for_subquestion
+#   for each SRA, the row answer specifies what the text is answering
 # answer_row_for_response:
 #   pull each SRA, use the row answer, and the text if present
 # answer_row_and_column_for_response
@@ -12,8 +14,8 @@
 
 open_ended:
   essay: first_survey_response_answer_text
-  multi: answer_row_for_response
-  numerical: answer_row_for_response
+  multi: answer_row_for_subquestion
+  numerical: answer_row_for_subquestion
   single: first_survey_response_answer_text
 single_choice:
   vertical: answer_row_for_response
@@ -33,8 +35,8 @@ matrix:
   rating: answer_row_and_column_for_response
   ranking: answer_row_and_column_for_response
 demographic:
-  us: answer_row_for_response
-  international: answer_row_for_response
+  us: answer_row_for_subquestion
+  international: answer_row_for_subquestion
 datetime:
   date_only: answer_row_for_response
   time_only: answer_row_for_response
