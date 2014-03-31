@@ -49,27 +49,27 @@ module Missinglink
           srd.response_to_question(question).should == "Value"
         end
 
-        it "for answer_row_match_for_survey_response_answer_text" do
+        it "for answer_row_for_response" do
           sra1 = SurveyResponseAnswer.new(row_survey_answer_id: 10)
           sra2 = SurveyResponseAnswer.new(row_survey_answer_id: 20, text: "Something")
           response.survey_response_answers << [sra1, sra2]
-          question.stub(answer_strategy: "answer_row_match_for_survey_response_answer_text")
+          question.stub(answer_strategy: "answer_row_for_response")
           srd.response_to_question(question).should == "Answer 1; Answer 2: Something"
         end
 
-        it "for row_column_survey_response_answers_and_text" do
+        it "for answer_row_and_column_for_response" do
           sra1 = SurveyResponseAnswer.new(row_survey_answer_id: 10, col_survey_answer_id: 20 )
           sra2 = SurveyResponseAnswer.new(text: "Something")
           response.survey_response_answers << [sra1, sra2]
-          question.stub(answer_strategy: "row_column_survey_response_answers_and_text")
+          question.stub(answer_strategy: "answer_row_and_column_for_response")
           srd.response_to_question(question).should == "Answer 1: Answer 2; Other: Something"
         end
 
-        it "for row_column_and_choice_survey_response_answers_and_text" do
+        it "for answer_row_column_choice_for_response" do
           sra1 = SurveyResponseAnswer.new(row_survey_answer_id: 10, col_survey_answer_id: 20, col_choice_survey_answer_id: 30 )
           sra2 = SurveyResponseAnswer.new(text: "Something")
           response.survey_response_answers << [sra1, sra2]
-          question.stub(answer_strategy: "row_column_and_choice_survey_response_answers_and_text")
+          question.stub(answer_strategy: "answer_row_column_choice_for_response")
           srd.response_to_question(question).should == "Answer 1, Answer 2: Answer 3; Other: Something"
         end
       end

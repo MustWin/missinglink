@@ -1,10 +1,10 @@
 # first_survey_response_answer_text:
 #   pull the first SRA, and use the text
-# answer_row_match_for_survey_response_answer_text:
+# answer_row_for_response:
 #   pull each SRA, use the row answer, and the text if present
-# row_column_survey_response_answers_and_text
+# answer_row_and_column_for_response
 #   pull each SRA, combo row/column search, "other" just has text
-# row_column_and_choice_survey_response_answers_and_text:
+# answer_row_column_choice_for_response:
 #   pull each SRA, combo row/column/colchoice search, "other" text
 # none:
 #   this is not actually a question, so ignore it
@@ -12,33 +12,33 @@
 
 open_ended:
   essay: first_survey_response_answer_text
-  multi: answer_row_match_for_survey_response_answer_text
-  numerical: answer_row_match_for_survey_response_answer_text
+  multi: answer_row_for_response
+  numerical: answer_row_for_response
   single: first_survey_response_answer_text
 single_choice:
-  vertical: answer_row_match_for_survey_response_answer_text
-  vertical_two_col: answer_row_match_for_survey_response_answer_text
-  vertical_three_col: answer_row_match_for_survey_response_answer_text
-  horiz: answer_row_match_for_survey_response_answer_text
-  menu: answer_row_match_for_survey_response_answer_text
+  vertical: answer_row_for_response
+  vertical_two_col: answer_row_for_response
+  vertical_three_col: answer_row_for_response
+  horiz: answer_row_for_response
+  menu: answer_row_for_response
 multiple_choice:
-  vertical: answer_row_match_for_survey_response_answer_text
-  vertical_two_col: answer_row_match_for_survey_response_answer_text
-  vertical_three_col: answer_row_match_for_survey_response_answer_text
-  horiz: answer_row_match_for_survey_response_answer_text
+  vertical: answer_row_for_response
+  vertical_two_col: answer_row_for_response
+  vertical_three_col: answer_row_for_response
+  horiz: answer_row_for_response
 matrix:
-  single: row_column_survey_response_answers_and_text
-  multi: row_column_survey_response_answers_and_text
-  menu: row_column_and_choice_survey_response_answers_and_text
-  rating: row_column_survey_response_answers_and_text
-  ranking: row_column_survey_response_answers_and_text
+  single: answer_row_and_column_for_response
+  multi: answer_row_and_column_for_response
+  menu: answer_row_column_choice_for_response
+  rating: answer_row_and_column_for_response
+  ranking: answer_row_and_column_for_response
 demographic:
-  us: answer_row_match_for_survey_response_answer_text
-  international: answer_row_match_for_survey_response_answer_text
+  us: answer_row_for_response
+  international: answer_row_for_response
 datetime:
-  date_only: answer_row_match_for_survey_response_answer_text
-  time_only: answer_row_match_for_survey_response_answer_text
-  both: answer_row_match_for_survey_response_answer_text
+  date_only: answer_row_for_response
+  time_only: answer_row_for_response
+  both: answer_row_for_response
 presentation:
   image: none
   video: none

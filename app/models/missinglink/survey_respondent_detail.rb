@@ -33,7 +33,7 @@ module Missinglink
       case question.answer_strategy
       when "first_survey_response_answer_text"
         return response.survey_response_answers.first.text
-      when "answer_row_match_for_survey_response_answer_text"
+      when "answer_row_for_response"
         response.survey_response_answers.each do |sra|
           if sra.text.nil?
             response_texts << SurveyAnswer.find(sra.row_survey_answer_id).text
@@ -41,7 +41,7 @@ module Missinglink
             response_texts << (SurveyAnswer.find(sra.row_survey_answer_id).text + ": " + sra.text)
           end
         end
-      when "row_column_survey_response_answers_and_text"
+      when "answer_row_and_column_for_response"
         response.survey_response_answers.each do |sra|
           if sra.text.nil?
             response_texts << (SurveyAnswer.find(sra.row_survey_answer_id).text + ": " + SurveyAnswer.find(sra.col_survey_answer_id).text)
@@ -49,7 +49,7 @@ module Missinglink
             response_texts << "Other: #{ sra.text }"
           end
         end
-      when "row_column_and_choice_survey_response_answers_and_text"
+      when "answer_row_column_choice_for_response"
         response.survey_response_answers.each do |sra|
           if sra.text.nil?
             response_texts << (SurveyAnswer.find(sra.row_survey_answer_id).text + ", " +

@@ -103,8 +103,8 @@ module Missinglink
             subject.possible_responses.should == { "sra1" => sra1.id, "sra3" => sra3.id }
           end
 
-          it "for answer_row_match_for_survey_response_answer_text" do
-            subject.stub(answer_strategy: "answer_row_match_for_survey_response_answer_text")
+          it "for answer_row_for_response" do
+            subject.stub(answer_strategy: "answer_row_for_response")
             subject.stub(survey_response_answers: [sra1, sra2, sra3])
             subject.possible_responses(true).should == { "10" => sra1.id,
                                                          "20" => sra2.id,
@@ -116,8 +116,8 @@ module Missinglink
                                                    "30" => sra3.id }
           end
 
-          it "for row_column_survey_response_answers_and_text" do
-            subject.stub(answer_strategy: "row_column_survey_response_answers_and_text")
+          it "for answer_row_and_column_for_response" do
+            subject.stub(answer_strategy: "answer_row_and_column_for_response")
             subject.stub(survey_response_answers: [sra1, sra2, sra3, sra7])
             subject.possible_responses(true).should == { "10: 11" => sra1.id,
                                                          "20: 21" => sra2.id,
@@ -128,8 +128,8 @@ module Missinglink
                                                    "30: 31" => sra3.id }
           end
 
-          it "for row_column_and_choice_survey_response_answers_and_text" do
-            subject.stub(answer_strategy: "row_column_and_choice_survey_response_answers_and_text")
+          it "for answer_row_column_choice_for_response" do
+            subject.stub(answer_strategy: "answer_row_column_choice_for_response")
             subject.stub(survey_response_answers: [sra1, sra2, sra4, sra7])
             subject.possible_responses(true).should == { "10, 11: 12" => sra1.id,
                                                          "20, 21: 22" => sra2.id,
@@ -150,22 +150,22 @@ module Missinglink
             subject.similar_response_answers(sra3).should == [sra3, sra4]
           end
 
-          it "for answer_row_match_for_survey_response_answer_text" do
-            subject.stub(answer_strategy: "answer_row_match_for_survey_response_answer_text")
+          it "for answer_row_for_response" do
+            subject.stub(answer_strategy: "answer_row_for_response")
             subject.stub(survey_response_answers: [sra1, sra2, sra3, sra4, sra5])
             subject.similar_response_answers(sra1).should == [sra1, sra4]
             subject.similar_response_answers(sra2).should == [sra2, sra5]
           end
 
-          it "for row_column_survey_response_answers_and_text" do
-            subject.stub(answer_strategy: "row_column_survey_response_answers_and_text")
+          it "for answer_row_and_column_for_response" do
+            subject.stub(answer_strategy: "answer_row_and_column_for_response")
             subject.stub(survey_response_answers: [sra1, sra2, sra3, sra4, sra5])
             subject.similar_response_answers(sra1).should == [sra1]
             subject.similar_response_answers(sra2).should == [sra2, sra5]
           end
 
-          it "for row_column_and_choice_survey_response_answers_and_text" do
-            subject.stub(answer_strategy: "row_column_and_choice_survey_response_answers_and_text")
+          it "for answer_row_column_choice_for_response" do
+            subject.stub(answer_strategy: "answer_row_column_choice_for_response")
             subject.stub(survey_response_answers: [sra1, sra2, sra3, sra4, sra5, sra6])
             subject.similar_response_answers(sra1).should == [sra1]
             subject.similar_response_answers(sra5).should == [sra5, sra6]
@@ -196,18 +196,18 @@ module Missinglink
             subject.question_parts.should be_nil
           end
 
-          it "should return nil for answer_row_match_for_survey_response_answer_text" do
-            subject.stub(answer_strategy: "answer_row_match_for_survey_response_answer_text")
+          it "should return nil for answer_row_for_response" do
+            subject.stub(answer_strategy: "answer_row_for_response")
             subject.question_parts.should be_nil
           end
 
-          it "should return the row answers for row_column_survey_response_answers_and_text" do
-            subject.stub(answer_strategy: "row_column_survey_response_answers_and_text")
+          it "should return the row answers for answer_row_and_column_for_response" do
+            subject.stub(answer_strategy: "answer_row_and_column_for_response")
             subject.question_parts.should == { "10" => 10, "20" => 20 }
           end
 
-          it "should return the row answers for row_column_and_choice_survey_response_answers_and_text" do
-            subject.stub(answer_strategy: "row_column_and_choice_survey_response_answers_and_text")
+          it "should return the row answers for answer_row_column_choice_for_response" do
+            subject.stub(answer_strategy: "answer_row_column_choice_for_response")
             subject.question_parts.should == { "10" => 10, "20" => 20 }
           end
 
