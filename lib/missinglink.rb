@@ -7,7 +7,13 @@ module Missinglink
   extend self
 
   def poll_surveys
-    response = Connection.request('get_survey_list')
+    begin
+      response = Connection.request('get_survey_list')
+    rescue Exception => e
+      puts "Exception raised when polling for surveys.\n#{ e.inspect }"
+      return -1
+    end
+
     (puts "Error polling surveys" && return) unless response
 
     response['surveys'].each do |s|

@@ -16,8 +16,14 @@ module Missinglink
     end
 
     def load_survey_details
-      response = Connection.request('get_survey_details',
-                                         { survey_id: sm_survey_id.to_s })
+      begin
+        response = Connection.request('get_survey_details',
+                                           { survey_id: sm_survey_id.to_s })
+      rescue Exception => e
+        puts "Exception raised when loading survey details for #{ self.inspect }.\n#{ e.inspect }"
+        return
+      end
+
       (puts "Error loading survey details for survey #{ self.inspect }." && return) unless response
 
       update_from_survey_details(response)
@@ -30,8 +36,14 @@ module Missinglink
     end
 
     def load_respondents
-      response = Connection.request('get_respondent_list',
-                                    { survey_id: sm_survey_id.to_s })
+      begin
+        response = Connection.request('get_respondent_list',
+                                      { survey_id: sm_survey_id.to_s })
+      rescue Exception => e
+        puts "Exception raised when loading survey respondents for #{ self.inspect }.\n#{ e.inspect }"
+        return
+      end
+
       (puts "Error loading responses for survey #{ self.inspect }" && return) unless response
 
       response['respondents'].each do |respondent|
@@ -51,9 +63,14 @@ module Missinglink
 
       while (respondents.size > 0)
         ids = respondents.slice!(0, 100).map { |x| x.sm_respondent_id.to_s }
-        response = Connection.request('get_responses',
-                                      { survey_id: sm_survey_id.to_s,
-                                        respondent_ids: ids })
+        begin
+          response = Connection.request('get_responses',
+                                        { survey_id: sm_survey_id.to_s,
+                                          respondent_ids: ids })
+        rescue Exception => e
+          puts "Exception raised when loading response details for #{ self.inspect }.\n#{ e.inspect }"
+          return
+        end
 
         (puts "Error fetching response answers" && return) unless response
 
