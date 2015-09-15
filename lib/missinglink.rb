@@ -1,4 +1,3 @@
-require 'pry'
 require "missinglink/engine"
 require "missinglink/connection"
 
