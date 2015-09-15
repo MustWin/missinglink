@@ -17,7 +17,7 @@ class AddMissinglinkSurveySchema < ActiveRecord::Migration
     add_index :surveys, :sm_survey_id
 
     create_table :survey_pages do |t|
-      t.integer   :survey_id
+      t.column   :survey_id, :bigint
       t.column    :sm_page_id, :bigint
       t.text      :heading
       t.text      :sub_heading
@@ -68,7 +68,7 @@ class AddMissinglinkSurveySchema < ActiveRecord::Migration
     add_index :survey_answers, :survey_question_id
 
     create_table :survey_respondent_details do |t|
-      t.integer   :survey_id
+      t.column   :survey_id, :bigint
       t.column    :sm_respondent_id, :bigint
       t.timestamp :date_start
       t.timestamp :date_modified
